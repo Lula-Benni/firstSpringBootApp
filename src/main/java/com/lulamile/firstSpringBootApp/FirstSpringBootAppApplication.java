@@ -1,7 +1,5 @@
 package com.lulamile.firstSpringBootApp;
 
-import com.lulamile.firstSpringBootApp.entity.Profile;
-import com.lulamile.firstSpringBootApp.entity.User;
 import lombok.extern.java.Log;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

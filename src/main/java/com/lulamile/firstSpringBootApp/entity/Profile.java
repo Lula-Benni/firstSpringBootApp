@@ -1,62 +1,43 @@
 package com.lulamile.firstSpringBootApp.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.lulamile.firstSpringBootApp.utils.Gender;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
+
+import java.util.Date;
+import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private int profileId;
+    @Column(nullable = false)
     private String fullName;
+    @Column(nullable = false, unique = true)
     private String userName;
-    private String cellNumber;
+    @Length(max=12,min=7)
+    @Column(nullable = false, length = 12)
     private String password;
-    //BCryptPasswordEncoder bCryptPasswordEncoder;
-   /* public Profile() {
-        fullName ="lula";
-        email = "lulabenni45@gmail.com";
-        cellNumber = "0783432345";
-        password="12345";
-    }*/
-    /*public Profile(String fullName, String email,String cellNumber, String password) {
-        this.fullName = fullName;
-        this.email = email;
-        this.cellNumber = cellNumber;
-        this.password=password;
-        //this.bCryptPasswordEncoder=bCryptPasswordEncoder;
-        //this.password = this.bCryptPasswordEncoder.encode(password);
-    }*/
-    public String getUserName() {return userName;}
-    public String getFullName() {
-        return fullName;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public String getCellNumber() {return cellNumber;}
-    public void setCellNumber(String cellNumber) {this.cellNumber = cellNumber;}
-    public void setUserName(String userName) {this.userName = userName;}
-    public void setFullName(String useName) {
-        this.fullName = useName;
-    }
-    public void setPassword(String password) {
-        //this.password = bCryptPasswordEncoder.encode(password);
-        this.password=password;
-    }
-    @Override
-    public String toString() {
-        return "Profile{" +
-                "fullName='" + fullName + '\'' +
-                ", email='" + userName + '\'' +
-                ", cellNumber='" + cellNumber + '\'' +
-                ", password='" + password + '\'' +
-                //", bCryptPasswordEncoder=" + bCryptPasswordEncoder +
-                '}';
-    }
-
-    public void logging(){
-        System.out.println("Logged in");
-    }
+    @NonNull
+    @JoinColumn(name = "contact_Id")
+    @OneToOne(optional = false,cascade = CascadeType.ALL)
+    private Contact contact;
+    @NonNull
+    @JoinColumn(name = "address_Id")
+    @ManyToOne(optional = false,cascade = CascadeType.ALL)
+    private Address address;
+    @Column(nullable = false)
+    private Date dateOfBirth;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    @JoinColumn(name="itemId",nullable = true)
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Item> items;
 }
