@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<header>
+    <nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+        <div class="container">
+            <div class="navbar-row">
+                <div class="nav-header">
+                    <img class="icon" src="images/icon.png" alt="icon">
+                <h4 class="nav-heading">SellUrItem</h4>
+                </div>
+                <div class="search-bar">
+                    <select class="category" name="category" id="item-category">
+                        <option>Category</option>
+                        <option value="cellphone">CELLPHONE</option>
+                        <option value="accessories">ACCESSORIES</option>
+                        <option value="Computes">COMPUTERS</option>
+                        <option value="games">VIDEO_GAMES</option>
+                        <option value="instruments">MUSICAL_INSTRUMENTS</option>
+                        <option value="books">BOOKS</option>
+                    </select>
+                    <input class="search" type="text" id="search-cat" name="search-category" placeholder="What are you looking for?">
+                    <button class="search_btn"><i class="fa-solid fa-search"></i> </button>
+                </div>
+                <div class="btns">
+                    <button class="btn"><i class="fa-solid fa-bookmark"></i></button>
+                    <button class="btn"><i class="fa-solid fa-comment"></i></button>
+                    <button class="btn"><i class="fa-solid fa-user"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+</html>
