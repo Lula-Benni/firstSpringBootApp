@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/head.html :: head">
+<body>
+<header th:insert="fragments/header.html :: header"></header>
+    <div class="login-container">
+        <div class="login-column">
+            <form action="#"
+                  th:action="@{/login}"
+                  method="post">
+                <div class="login-row">
+                    <h4>Username/Email</h4>
+                    <input class="input" type="text" id="userName" name="userName" placeholder="Enter your Username or email">
+                </div>
+                <div class="login-row">
+                    <h4>Password</h4>
+                    <input class="input" type="password" id="password" name="password" placeholder="Enter your Password">
+                </div>
+                <div class="logging">
+                    <input class="login-btn" type="submit" id="login-btn" name="login-btn" value="Login">
+                    <a href="" target="_blank">Forgot Password?</a>
+                </div>
+                <div class="register">
+                    <h6>Don't have an account?</h6>
+                    <!--<a href="http://localhost:8182/register" target="_self">click here to Register</a>-->
+                    <a th:href="@{register}">click here to Register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+<footer th:replace="fragments/footer.html :: footer"></footer>
+</body>
+</html>

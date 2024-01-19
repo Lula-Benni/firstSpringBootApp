@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -26,5 +29,7 @@ public class Address {
     private String country;
     @Column(nullable = false)
     private String additionalDetails;
+    @OneToMany(mappedBy = "address")
+    private List<Profile> profiles;
 
 }

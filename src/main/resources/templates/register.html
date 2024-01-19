@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/head.html :: head">
+<body>
+<header th:insert="fragments/header.html :: header"></header>
+<div class="register-container">
+    <div class="register-column">
+<form th:action="@{/register}"
+      th:object="${dto}"
+      method="post"
+        >
+        <div class="register-row">
+            <h4>Full Name</h4>
+            <input class="input" type="text" th:field="${dto.profile.fullName}" id="fullName" name="fullName" placeholder="Enter your Full Name">
+        </div>
+        <div class="register-row">
+            <h4>UserName</h4>
+            <input class="input" type="text" th:field="${dto.profile.userName}" id="userName" name="reg-username" placeholder="Enter your Username">
+        </div>
+            <div class="register-row">
+                <h4>Email</h4>
+                <input class="input" type="email" th:field="${dto.contact.emails}" id="emails" name="email" placeholder="Enter your email">
+            </div>
+            <div class="register-row">
+                <h4>Phone Number</h4>
+                <input class="input" type="text" th:field="${dto.contact.cellNumber}" id="cellNumber" name="phone" placeholder="Enter your Phone Number">
+            </div>
+        <div class="register-row">
+            <h4>Date Of Birth</h4>
+            <input class="input" type="date" th:field="${dto.profile.dateOfBirth}" id="dateOfBirth" name="date-of-birth" placeholder="Enter your Date Of Birth">
+        </div>
+        <div class="gender">
+            <h4>Gender</h4>
+            <div class="gender-row" >
+                <input type="radio" th:field="${dto.profile.gender}" id="male" name="gender" value="MALE" checked="checked" >
+                <label for="male">Male</label>
+                <input type="radio" th:field="${dto.profile.gender}" id="female" name="gender" value="FEMALE" >
+                <label for="female">Female</label>
+                <input type="radio" th:field="${dto.profile.gender}" id="other" name="gender" value="OTHER" >
+                <label for="other">Other</label>
+            </div>
+        </div>
+        <div class="address">
+                <fieldset>
+                    <legend class="label-name">Address</legend>
+                    <div class="address-row">
+                        <h5>Street</h5>
+                        <input class="input-address" type="text" th:field="${dto.address.street}" id="street" name="street" placeholder="Enter street name">
+                    </div>
+                    <div class="address-row">
+                        <h5>City</h5>
+                        <input class="input-address" type="text" th:field="${dto.address.city}" id="city" name="city" placeholder="Enter city name">
+                    </div>
+                    <div class="address-row">
+                        <h5>Postal Code</h5>
+                        <input class="input-address" type="text" th:field="${dto.address.postalCode}" id="postalCode" name="postal-code" placeholder="Enter postal code">
+                    </div>
+                    <div class="address-row">
+                        <h5>State</h5>
+                        <input class="input-address" type="text" th:field="${dto.address.state}" id="state" name="state" placeholder="Enter state">
+                    </div>
+                    <div class="address-row">
+                        <h5>Country</h5>
+                        <input class="input-address" type="text" th:field="${dto.address.country}" id="country" name="country" placeholder="Enter your Country">
+                    </div>
+                    <div class="address-row">
+                        <h5>Additional Details</h5>
+                        <textarea class="additional-address" th:field="${dto.address.additionalDetails}" id="additionalDetails" name="additional-details" cols="50" placeholder="Enter Additional details"></textarea>
+                    </div>
+                </fieldset>
+        </div>
+
+        <div class="register-row">
+            <h4>Password</h4>
+            <input class="input" type="password" th:field="${dto.profile.password}" id="password" name="reg-password" placeholder="Enter your Password">
+        </div>
+            <div class="submit">
+                <BUTTON class="submit" type="submit" id="submit" name="submit">Register</BUTTON>
+            </div>
+        </form>
+    </div>
+</div>
+<footer th:replace="fragments/footer.html :: footer"></footer>
+</body>
+</html>

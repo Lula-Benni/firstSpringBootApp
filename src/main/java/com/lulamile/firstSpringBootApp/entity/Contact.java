@@ -16,7 +16,10 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int contactId;
     @Column(nullable = false, unique = true)
-    private String email;
-    @Column(nullable = false)
+    private String emails;
+    @Column(nullable = true)
     private String cellNumber;
+    @OneToOne(mappedBy = "contact")
+    private Profile profile;
 }
+

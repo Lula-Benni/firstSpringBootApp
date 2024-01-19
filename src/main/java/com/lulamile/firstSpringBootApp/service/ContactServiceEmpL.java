@@ -35,8 +35,8 @@ public class ContactServiceEmpL implements ContactService{
     public Contact updateContact(int contactId,Contact contact) {
         Contact contactDB = contactRepository.findById(contactId).get();
         Predicate<Object> validate = (input) -> Objects.nonNull(input) && !input.toString().isEmpty();
-        if(validate.test(contact.getEmail())){
-            contactDB.setEmail(contact.getEmail());
+        if(validate.test(contact.getEmails())){
+            contactDB.setEmails(contact.getEmails());
         }
         if(validate.test(contact.getCellNumber())){
             contactDB.setCellNumber(contact.getCellNumber());

@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 header .container{
-    background-color: grey;
+    background-color: black;
     height:110px;
     line-height:35px
 }
@@ -24,11 +24,12 @@ header .container{
 .nav-heading{
     font-size: 30px;
     position: relative;
-    bottom: 65px;
+    bottom: 50px;
     left: 75px;
+    color: white;
 }
 .nav-header{
-    margin-top: 5px;
+    margin-top: 10px;
 }
 .search{
     width: 334px;
@@ -60,7 +61,7 @@ header .container{
     border-radius: 200px;
     border: none;
     margin-left: 40px;
-    background-color: grey;
+    background-color: black;
     color: white;
 }
 .btns{

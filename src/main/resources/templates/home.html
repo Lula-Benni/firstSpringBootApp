@@ -1,12 +1,17 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/head :: head">
+<head th:replace="/fragments/head.html :: head">
 <body>
 <header th:insert="fragments/header.html :: header"></header>
-    <div class="container">
-        This is my home page
+    <div class="home-container">
+        <h2>This is my Home Page</h2>
+        <div class="profiles" th:each="profile : ${profiles}">
+            <h3 th:text="${profile.fullName}">Full Name</h3>
+            <h3 th:text="${profile.userName}">userName</h3>
+            <h3 th:text="${profile.password}">Password</h3>
+            <hr/>
+        </div>
     </div>
 <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>
-
 </html>

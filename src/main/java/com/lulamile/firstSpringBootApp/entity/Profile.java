@@ -4,6 +4,7 @@ import com.lulamile.firstSpringBootApp.utils.Gender;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -21,23 +22,23 @@ public class Profile {
     private String fullName;
     @Column(nullable = false, unique = true)
     private String userName;
-    @Length(max=12,min=7)
-    @Column(nullable = false, length = 12)
+    @Column(nullable = false)
     private String password;
     @NonNull
-    @JoinColumn(name = "contact_Id")
-    @OneToOne(optional = false,cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_Id",referencedColumnName = "contactId")
+    @OneToOne(optional = false)
     private Contact contact;
     @NonNull
-    @JoinColumn(name = "address_Id")
-    @ManyToOne(optional = false,cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_Id", referencedColumnName = "addressId")
+    @ManyToOne(optional = false)
     private Address address;
-    @Column(nullable = false)
+    @Column(nullable = true)
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date dateOfBirth;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @JoinColumn(name="itemId",nullable = true)
+    /*@JoinColumn(name="itemId",nullable = true)
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Item> items;
+    private List<Item> items;*/
 }

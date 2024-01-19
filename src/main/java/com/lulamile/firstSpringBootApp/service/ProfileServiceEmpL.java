@@ -5,23 +5,32 @@ import com.lulamile.firstSpringBootApp.entity.Contact;
 import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Predicate;
 
 
 @Service
-public class ProfileServiceEmpL implements ProfileService {
+public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
     @Autowired
     private ProfileRepository profileRepository;
     @Autowired
     private AddressService addressService;
     @Autowired
     private ContactService contactService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public Profile saveProfile(Profile profile) {
+        profile.setPassword(passwordEncoder.encode(profile.getPassword()));
         return profileRepository.save(profile);
     }
 
@@ -48,14 +57,14 @@ public class ProfileServiceEmpL implements ProfileService {
         if(validate.test( profile.getFullName())){
             profileDB.setFullName(profile.getFullName());
         }
-        if(validate.test(profile.getContact())){
-            profileDB.setContact(profile.getContact());
-        }
         if(validate.test(profile.getPassword())){
             profileDB.setPassword(profile.getPassword());
         }
         if(validate.test(profile.getUserName()) ){
             profileDB.setUserName(profile.getUserName());
+        }
+        if(validate.test(profile.getContact())){
+            profileDB.setContact(profile.getContact());
         }
         if(validate.test(profile.getAddress())){
             profileDB.setAddress(profile.getAddress());
@@ -66,14 +75,28 @@ public class ProfileServiceEmpL implements ProfileService {
         if(validate.test(profile.getGender())){
             profileDB.setGender(profile.getGender());
         }
-        if (validate.test(profile.getItems())){
+        /*if (validate.test(profile.getItems())){
             profileDB.setItems(profile.getItems());
-        }
+        }*/
         return profileRepository.save(profileDB);
     }
 
     @Override
     public Profile fetchProfileByName(String fullName) {
         return profileRepository.findByFullNameIgnoreCase(fullName);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        Optional<Profile> optionalProfile = profileRepository.findOneByUserNameIgnoreCase(userName);
+        if(!optionalProfile.isPresent()){
+            throw new UsernameNotFoundException("Profile with username "+userName+" is not found");
+        }
+        Profile profile = optionalProfile.get();
+
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority("Allow"));
+
+        return new User(profile.getUserName(),profile.getPassword(),grantedAuthorities);
     }
 }

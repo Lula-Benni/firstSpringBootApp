@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Ubuntu+Mono&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.login-container{
+     margin: auto;
+     width: 50%;
+     padding: 10px;
+     border:2px solid;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     border-radius: 20px;
+}
+.login-column{
+    display: inline-block;
+}
+.login-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 100px;
+}
+.login-row h4{
+    color: black;
+    margin-right: 70px;
+}
+.input{
+    width: 220px;
+}
+.login-column a{
+    font-size: 12px;
+    font-color: grey;
+}
+.login-btn{
+    margin-left: 220px;
+    width: 40%;
+}
+.register{
+    display: flex;
+    padding-top: 10px;
+    padding-left:190px;
+}
+.register a{
+    padding-left: 7px;
+}
+.logging{
+    display: inline-block;
+}
+.logging a{
+    margin-left: 290px;
+}

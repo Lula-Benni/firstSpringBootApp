@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Integer> {
@@ -16,4 +17,5 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
     @Query(value = "update profile set password = ?1 where email = ?2",
             nativeQuery=true)
     public void updatePassWordByEmail(String password,String email);
+    Optional<Profile> findOneByUserNameIgnoreCase(String userName);
 }
