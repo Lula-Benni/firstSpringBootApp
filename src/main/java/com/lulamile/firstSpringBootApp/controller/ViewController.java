@@ -8,18 +8,17 @@ import com.lulamile.firstSpringBootApp.service.AddressService;
 import com.lulamile.firstSpringBootApp.service.ContactService;
 import com.lulamile.firstSpringBootApp.service.ProfileService;
 import com.lulamile.firstSpringBootApp.utils.DTO;
-import com.lulamile.firstSpringBootApp.utils.Gender;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 @Slf4j
 @Controller
 public class ViewController {
@@ -63,5 +62,13 @@ public class ViewController {
         ModelAndView mav = new ModelAndView("home");
         mav.addObject("profiles",profiles);
         return mav;
+    }
+    @GetMapping("/logout")
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";
     }
 }

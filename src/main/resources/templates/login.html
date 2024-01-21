@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/head.html :: head">
+<head th:replace="~{/fragments/head.html :: head}">
 <body>
-<header th:insert="fragments/header.html :: header"></header>
+<header th:insert="~{fragments/header.html :: header}"></header>
     <div class="login-container">
         <div class="login-column">
             <form action="#"
@@ -28,6 +28,6 @@
             </form>
         </div>
     </div>
-<footer th:replace="fragments/footer.html :: footer"></footer>
+<footer th:replace="~{fragments/footer.html :: footer}"></footer>
 </body>
 </html>

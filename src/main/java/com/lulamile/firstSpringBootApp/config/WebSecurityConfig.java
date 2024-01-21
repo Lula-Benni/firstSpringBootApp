@@ -22,9 +22,6 @@ public class WebSecurityConfig {
     MvcRequestMatcher.Builder mvc(HandlerMappingIntrospector introspector) {
         return new MvcRequestMatcher.Builder(introspector);
     }
-    private  static  final String[] WHITELIST ={
-            "/login","/register","/home","/css/**","/fonts/**","/images/**","/js/**",
-    };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         http
