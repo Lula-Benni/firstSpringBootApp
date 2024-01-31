@@ -1,6 +1,7 @@
 package com.lulamile.firstSpringBootApp.controller;
 
 import com.lulamile.firstSpringBootApp.entity.Item;
+import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

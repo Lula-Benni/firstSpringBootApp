@@ -1,6 +1,7 @@
 package com.lulamile.firstSpringBootApp.service;
 
 import com.lulamile.firstSpringBootApp.entity.Item;
+import com.lulamile.firstSpringBootApp.entity.Profile;
 
 import java.util.List;
 

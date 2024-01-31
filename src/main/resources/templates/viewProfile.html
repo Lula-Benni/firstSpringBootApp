@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragments/head.html :: head}">
+<body>
+<header th:replace="~{fragments/header.html :: header}"></header>
+<div class="profile-container">
+        <div class="row-view">
+                <h2>Personal Information</h2>
+                <div class="edit-container">
+                        <div class="fullName-container">
+                                <h5>Full Name</h5>
+                                <h6 th:text="${profile.fullName}">John Doe</h6>
+                        </div>
+                        <a class="edit-fullName" href="#">Edit</a>
+                </div>
+                <hr>
+                <div class="edit-container">
+                        <div class="userName-container">
+                                <h5>Username</h5>
+                                <h6 th:text="${profile.userName}">John Doe</h6>
+                        </div>
+                        <a class="edit-userName" href="#">Edit</a>
+                </div>
+                <hr>
+                <div class="edit-container">
+                        <div class="contacts-container">
+                                <h4>Contact</h4>
+                                <h5>Email</h5>
+                                <h6 th:text="${profile.contact.emails}">John Doe</h6>
+                                <h5>Phone number</h5>
+                                <h6 th:text="${profile.contact.cellNumber}">John Doe</h6>
+                        </div>
+                        <a class="edit-contacts" href="#">Edit</a>
+                </div>
+                <hr>
+                <div class="edit-container">
+                        <div class="address-container">
+                                <h4>Address</h4>
+                                <h6 th:text="${profile.address.street}">John Doe</h6>
+                                <h6 th:text="${profile.address.city}">John Doe</h6>
+                                <h6 th:text="${profile.address.postalCode}">John Doe</h6>
+                                <h6 th:text="${profile.address.state}">John Doe</h6>
+                                <h6 th:text="${profile.address.country}">John Doe</h6>
+                                <h6 th:text="${profile.address.additionalDetails}">John Doe</h6>
+                        </div>
+                        <a class="edit-address" href="#">Edit</a>
+                </div>
+                <hr>
+                <div class="edit-container">
+                        <div class="password-container">
+                                <h5>Security</h5>
+                                <h6 th:text="${profile.password}">John Doe</h6>
+                        </div>
+                        <a class="change-password" href="#">Change Password</a>
+                </div>
+        </div>
+</div>
+<footer th:replace="~{fragments/footer.html :: footer}"></footer>
+</body>
+</html>

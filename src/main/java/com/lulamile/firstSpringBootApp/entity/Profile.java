@@ -38,7 +38,6 @@ public class Profile {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    /*@JoinColumn(name="itemId",nullable = true)
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Item> items;*/
+    @OneToMany(mappedBy = "profile")
+    private List<Item> items;
 }

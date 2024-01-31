@@ -3,6 +3,7 @@ package com.lulamile.firstSpringBootApp.service;
 import com.lulamile.firstSpringBootApp.entity.Address;
 import com.lulamile.firstSpringBootApp.entity.Contact;
 import com.lulamile.firstSpringBootApp.entity.Profile;
+import com.lulamile.firstSpringBootApp.repository.ItemRepository;
 import com.lulamile.firstSpringBootApp.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -75,15 +76,15 @@ public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
         if(validate.test(profile.getGender())){
             profileDB.setGender(profile.getGender());
         }
-        /*if (validate.test(profile.getItems())){
+        if (validate.test(profile.getItems())){
             profileDB.setItems(profile.getItems());
-        }*/
+        }
         return profileRepository.save(profileDB);
     }
 
     @Override
-    public Profile fetchProfileByName(String fullName) {
-        return profileRepository.findByFullNameIgnoreCase(fullName);
+    public Profile fetchProfileByUserName(String userName) {
+        return profileRepository.findByUserNameIgnoreCase(userName);
     }
 
     @Override

@@ -39,8 +39,8 @@ public class ProfileController {
     public Profile updateProfile(@PathVariable("id") int profileId, @RequestBody Profile profile){
         return profileService.updateProfile(profileId, profile);
     }
-    @GetMapping("/profile/name/{name}")
-    public Profile fetchProfileByName(@PathVariable("name") String fullName){
-        return profileService.fetchProfileByName(fullName);
+    @GetMapping("/profile/username/{username}")
+    public Profile fetchProfileByUserName(@PathVariable("username") String userName){
+        return profileService.fetchProfileByUserName(userName);
     }
 }

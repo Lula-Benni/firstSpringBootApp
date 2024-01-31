@@ -18,4 +18,6 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
             nativeQuery=true)
     public void updatePassWordByEmail(String password,String email);
     Optional<Profile> findOneByUserNameIgnoreCase(String userName);
+
+    Profile findByUserNameIgnoreCase(String userName);
 }

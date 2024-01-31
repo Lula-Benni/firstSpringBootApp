@@ -8,6 +8,7 @@
     <div class="h-container">
         <div class="navbar-row">
             <div class="nav-header">
+                <button class="backBtn" onclick="history.back()"><i class="fa-solid fa-angle-left"></i></button>
                 <img class="icon" src="images/icon.png" alt="icon">
             <h4 class="nav-heading">SellUrItem</h4>
             </div>
@@ -30,8 +31,8 @@
                 <div class="dropdown">
                     <button class="btn"><i class="fa-solid fa-user"> <i class="fa fa-caret-down"></i></i></button>
                     <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
+                        <a href="#" th:href="@{/viewProfile}">Go to Profile</a>
+                        <a href="#" th:href="@{/addItem}">Add Item</a>
                         <a href="#" th:href="@{/logout}">Log Out</a>
                     </div>
                 </div>

@@ -1,13 +1,16 @@
 package com.lulamile.firstSpringBootApp.controller;
 
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
 import com.lulamile.firstSpringBootApp.entity.Address;
 import com.lulamile.firstSpringBootApp.entity.Contact;
+import com.lulamile.firstSpringBootApp.entity.Item;
 import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.service.AddressService;
 import com.lulamile.firstSpringBootApp.service.ContactService;
+import com.lulamile.firstSpringBootApp.service.ItemService;
 import com.lulamile.firstSpringBootApp.service.ProfileService;
 import com.lulamile.firstSpringBootApp.utils.DTO;
+import com.lulamile.firstSpringBootApp.utils.ItemDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +31,8 @@ public class ViewController {
     private AddressService addressService;
     @Autowired
     private ContactService contactService;
+    @Autowired
+    private ItemService itemService;
     @GetMapping("/login")
     public String login(Model model){
         return "login";
@@ -56,11 +61,32 @@ public class ViewController {
         log.info(String.valueOf(profile));
         return "redirect:/login";
     }
+    @GetMapping("/addItem")
+    public ModelAndView addItem(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Profile profile = profileService.fetchProfileByUserName(username);
+        Item item = new Item();
+        ItemDTO itemDto = new ItemDTO(item,profile);
+        ModelAndView mav = new ModelAndView("addItem");
+        mav.addObject("itemDto",itemDto);
+        return mav;
+    }
+    @PostMapping("/addItem")
+    public String item_user(@ModelAttribute("itemDto") ItemDTO itemDto){
+        Item item = itemDto.getItem();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Profile profile = profileService.fetchProfileByUserName(username);
+        item.setProfile(profile);
+        itemService.saveItem(item);
+        return "redirect:/home";
+    }
     @GetMapping("/home")
     public ModelAndView home(){
-        List<Profile> profiles = profileService.fetchProfiles();
+        List<Item> items = itemService.fetchItems();
         ModelAndView mav = new ModelAndView("home");
-        mav.addObject("profiles",profiles);
+        mav.addObject("items",items);
         return mav;
     }
     @GetMapping("/logout")
@@ -70,5 +96,21 @@ public class ViewController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/login?logout";
+    }
+    @GetMapping("/viewProfile")
+    public ModelAndView viewProfile(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Profile profile = profileService.fetchProfileByUserName(username);
+        ModelAndView mav = new ModelAndView("viewProfile");
+        mav.addObject("profile",profile);
+        return mav;
+    }
+    @GetMapping("/itemProfile-{id}")
+    public ModelAndView itemProfile(@PathVariable("id") int id){
+        Profile profile = profileService.fetchProfile(id);
+        ModelAndView mav = new ModelAndView("itemProfile");
+        mav.addObject("profile",profile);
+        return mav;
     }
 }

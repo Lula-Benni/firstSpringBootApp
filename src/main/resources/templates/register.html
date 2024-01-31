@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{/fragments/head.html :: head}">
 <body>
-<header th:insert="~{fragments/header.html :: header}"></header>
+<header th:replace="~{fragments/header.html :: header}"></header>
 <div class="register-container">
     <div class="register-column">
 <form th:action="@{/register}"
@@ -56,7 +56,7 @@
                         <input class="input-address" type="text" th:field="${dto.address.postalCode}" id="postalCode" name="postal-code" placeholder="Enter postal code">
                     </div>
                     <div class="address-row">
-                        <h5>State</h5>
+                        <h5>State/Province</h5>
                         <input class="input-address" type="text" th:field="${dto.address.state}" id="state" name="state" placeholder="Enter state">
                     </div>
                     <div class="address-row">
@@ -65,8 +65,9 @@
                     </div>
                     <div class="address-row">
                         <h5>Additional Details</h5>
-                        <textarea class="additional-address" th:field="${dto.address.additionalDetails}" id="additionalDetails" name="additional-details" cols="50" placeholder="Enter Additional details"></textarea>
                     </div>
+                    <textarea class="additional-address" th:field="${dto.address.additionalDetails}" id="additionalDetails" name="additional-details" cols="50" placeholder="Enter Additional details"></textarea>
+
                 </fieldset>
         </div>
 

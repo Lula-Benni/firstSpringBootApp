@@ -31,5 +31,4 @@ public class Address {
     private String additionalDetails;
     @OneToMany(mappedBy = "address")
     private List<Profile> profiles;
-
 }

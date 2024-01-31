@@ -12,5 +12,5 @@ public interface ProfileService {
     public Profile fetchProfile(int profileId);
     public String deleteProfile(int profileId);
     public Profile updateProfile(int profileId, Profile profile);
-    public Profile fetchProfileByName(String fullName);
+    public Profile fetchProfileByUserName(String fullName);
 }

@@ -23,7 +23,7 @@ public class Item {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Category category;
-    @ManyToOne
-    @JoinColumn(name = "profile_Id")
-    private Profile sellerProfile;
+    @JoinColumn(name="profile_Id",nullable = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Profile profile;
 }

@@ -1,6 +1,7 @@
 package com.lulamile.firstSpringBootApp.service;
 
 import com.lulamile.firstSpringBootApp.entity.Item;
+import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,8 +47,8 @@ public class ItemServiceEmpL implements ItemService {
         if(validate.test(item.getCategory())){
             itemDB.setCategory(item.getCategory());
         }
-        if(validate.test(item.getSellerProfile())){
-            itemDB.setSellerProfile(item.getSellerProfile());
+        if(validate.test(item.getProfile())){
+            itemDB.setProfile(item.getProfile());
         }
         return itemRepository.save(itemDB);
     }

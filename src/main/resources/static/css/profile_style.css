@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Ubuntu+Mono&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.row-view{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 50%;
+    margin-left: 25%;
+}
+.edit-fullName{
+    position: absolute;
+    left: 69rem;
+}
+.edit-userName{
+    position: absolute;
+    left: 69rem;
+}
+.edit-contacts{
+    position: absolute;
+    left: 69rem;
+}
+.edit-address{
+    position: absolute;
+    left: 69rem;
+}
+.change-password{
+    position: absolute;
+    left: 61.8rem;
+}
+.edit-container{
+    display: flex;
+}

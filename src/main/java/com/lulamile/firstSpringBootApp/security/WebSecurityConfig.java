@@ -1,4 +1,4 @@
-package com.lulamile.firstSpringBootApp.config;
+package com.lulamile.firstSpringBootApp.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
