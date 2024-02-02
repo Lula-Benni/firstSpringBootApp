@@ -6,37 +6,37 @@
 <div class="item-container">
     <div class="item-column">
         <form th:action="@{/addItem}"
-              th:object="${item}"
+              th:object="${itemDto}"
               method="post"
         >
             <div class="item-row">
                 <h4>Item Name</h4>
-                <input class="input" type="text" th:field="${item.itemName}" id="itemName" name="itemName" placeholder="Enter your Full Name">
+                <input class="input" type="text" th:field="${itemDto.item.itemName}" id="itemName" name="itemName" placeholder="Enter your Full Name">
             </div>
             <div class="item-row">
                 <h4>Item Price</h4>
-                <input class="input" type="number" th:field="${item.itemPrice}" id="itemPrice" name="itemPrice" placeholder="Enter your Username">
+                <input class="input" type="number" th:field="${itemDto.item.itemPrice}" id="itemPrice" name="itemPrice" placeholder="Enter your Username">
             </div>
             <div class="item-category">
                 <h4>Category</h4>
                 <div class="category-row" >
-                    <input type="radio" th:field="${item.category}" id="cellphone" name="category" value="CELLPHONE" checked="checked" >
+                    <input type="radio" th:field="${itemDto.item.category}" id="cellphone" name="category" value="CELLPHONE" checked="checked" >
                     <label for="cellphone">CELLPHONE</label>
-                    <input type="radio" th:field="${item.category}" id="accessories" name="category" value="ACCESSORIES" >
+                    <input type="radio" th:field="${itemDto.item.category}" id="accessories" name="category" value="ACCESSORIES" >
                     <label for="accessories">ACCESSORIES</label>
-                    <input type="radio" th:field="${item.category}" id="computer" name="category" value="COMPUTERS" >
+                    <input type="radio" th:field="${itemDto.item.category}" id="computer" name="category" value="COMPUTERS" >
                     <label for="computer">COMPUTERS</label>
-                    <input type="radio" th:field="${item.category}" id="video-games" name="category" value="VIDEO_GAMES">
+                    <input type="radio" th:field="${itemDto.item.category}" id="video-games" name="category" value="VIDEO_GAMES">
                     <label for="video-games">VIDEO_GAMES</label>
-                    <input type="radio" th:field="${item.category}" id="musical-instruments" name="MUSICAL_INSTRUMENTS" value="FEMALE" >
+                    <input type="radio" th:field="${itemDto.item.category}" id="musical-instruments" name="MUSICAL_INSTRUMENTS" value="FEMALE" >
                     <label for="musical-instruments">MUSICAL_INSTRUMENTS</label>
-                    <input type="radio" th:field="${item.category}" id="books" name="category" value="BOOKS" >
+                    <input type="radio" th:field="${itemDto.item.category}" id="books" name="category" value="BOOKS" >
                     <label for="books">BOOKS</label>
                 </div>
             </div>
             <div class="item-row">
                 <h4>Item Description</h4>
-                <textarea class="input" th:field="${item.itemDescription}" id="itemDescription" name="itemDescription" cols="50" placeholder="Enter Additional details"></textarea>
+                <textarea class="input" th:field="${itemDto.item.itemDescription}" id="itemDescription" name="itemDescription" cols="50" placeholder="Enter Additional details"></textarea>
             </div>
             <div class="submit">
                 <BUTTON class="submit" type="submit" id="submit" name="submit">Register</BUTTON>
