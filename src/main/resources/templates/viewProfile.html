@@ -10,16 +10,18 @@
                         <div class="fullName-container">
                                 <h5>Full Name</h5>
                                 <h6 th:text="${profile.fullName}">John Doe</h6>
+                                <input class="hide" type="text" id="fullName" name="fullName" placeholder="Enter FullName" />
                         </div>
-                        <a class="edit-fullName" href="#">Edit</a>
+                        <a class="edit-fullName" href="#" onclick="onFullNameEditClick()">Edit</a>
                 </div>
                 <hr>
                 <div class="edit-container">
                         <div class="userName-container">
                                 <h5>Username</h5>
                                 <h6 th:text="${profile.userName}">John Doe</h6>
+                                <input class="hide" type="text" id="userName" name="reg-username" placeholder="Enter new Username" />
                         </div>
-                        <a class="edit-userName" href="#">Edit</a>
+                        <a class="edit-userName" href="#" onclick="onUserNameEditClick()">Edit</a>
                 </div>
                 <hr>
                 <div class="edit-container">
@@ -27,23 +29,31 @@
                                 <h4>Contact</h4>
                                 <h5>Email</h5>
                                 <h6 th:text="${profile.contact.emails}">John Doe</h6>
+                                <input class="hide" type="text" id="emails" name="email" placeholder="Enter new email address" />
                                 <h5>Phone number</h5>
                                 <h6 th:text="${profile.contact.cellNumber}">John Doe</h6>
+                                <input class="hide" type="text" id="cellNumber" name="phone" placeholder="Enter new CellPhone number" />
                         </div>
-                        <a class="edit-contacts" href="#">Edit</a>
+                        <a class="edit-contacts" href="#" onclick="onContactEditClick()">Edit</a>
                 </div>
                 <hr>
                 <div class="edit-container">
                         <div class="address-container">
                                 <h4>Address</h4>
                                 <h6 th:text="${profile.address.street}">John Doe</h6>
+                                <input class="hide" type="text" id="street" name="street" placeholder="Enter new Street Name" />
                                 <h6 th:text="${profile.address.city}">John Doe</h6>
+                                <input class="hide" type="text" id="city" name="city" placeholder="Enter new City Name" />
                                 <h6 th:text="${profile.address.postalCode}">John Doe</h6>
+                                <input class="hide" type="text" id="postalCode" name="postal-code" placeholder="Enter new Postal Code" />
                                 <h6 th:text="${profile.address.state}">John Doe</h6>
+                                <input class="hide" type="text" id="state" name="state" placeholder="Enter new State" />
                                 <h6 th:text="${profile.address.country}">John Doe</h6>
+                                <input class="hide" type="text" id="country" name="country" placeholder="Enter new Country Name" />
                                 <h6 th:text="${profile.address.additionalDetails}">John Doe</h6>
+                                <textarea class="hide" cols="50" id="additionalDetails" name="additional-details" placeholder="Edit additional details"></textarea>
                         </div>
-                        <a class="edit-address" href="#">Edit</a>
+                        <a class="edit-address" href="#" onclick="onAddressEditClick()">Edit</a>
                 </div>
                 <hr>
                 <div class="edit-container">

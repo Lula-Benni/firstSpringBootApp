@@ -34,3 +34,9 @@
 .edit-container{
     display: flex;
 }
+.hide{
+  display:none;
+}
+.show{
+  display:block;
+}
