@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Ubuntu+Mono&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.item-container{
+     margin: auto;
+     width: 50%;
+     padding: 10px;
+     border:2px solid;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     border-radius: 20px;
+}
+.item-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 100px;
+}
+.item-category{
+    padding-left: 100px;
+}
+.category-row{
+    padding-left: 300px;
+    margin-bottom: 40px;
+}
