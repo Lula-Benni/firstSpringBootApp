@@ -99,17 +99,32 @@ public class ViewController {
         return "redirect:/login?logout";
     }
     @GetMapping("/viewProfile")
-    public ModelAndView viewProfile(){
+    public ModelAndView viewProfile() {
+
+        Profile profile;
+        Contact contact;
+        Address address;
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        Profile profile = profileService.fetchProfileByUserName(username);
+        profile = profileService.fetchProfileByUserName(username);
+        contact = contactService.fetchContactById(profile.getContact().getContactId());
+        address = profile.getAddress();
+
+        DTO dto = new DTO(profile, contact, address);
         ModelAndView mav = new ModelAndView("viewProfile");
-        mav.addObject("profile",profile);
+        mav.addObject("dto", dto);
         return mav;
     }
     @PostMapping("/viewProfile-{id}")
     @PreAuthorize("isAuthenticated()")
-    public String updateProfile(@PathVariable("id") int id, @ModelAttribute("profile") Profile profile){
+    public String updateProfile(@PathVariable("id") int id, @ModelAttribute("dto") DTO dto){
+        Profile profile = dto.getProfile();
+        Contact contact = dto.getContact();
+        Address address = dto.getAddress();
+
+        contactService.updateContact(id,contact);
+        addressService.updateAddress(id,address);
         profileService.updateProfile(id,profile);
         return "redirect:/viewProfile";
     }
