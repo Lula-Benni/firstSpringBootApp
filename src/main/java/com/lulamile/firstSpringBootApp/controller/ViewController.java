@@ -1,5 +1,6 @@
 package com.lulamile.firstSpringBootApp.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import com.lulamile.firstSpringBootApp.entity.Address;
 import com.lulamile.firstSpringBootApp.entity.Contact;
@@ -105,6 +106,12 @@ public class ViewController {
         ModelAndView mav = new ModelAndView("viewProfile");
         mav.addObject("profile",profile);
         return mav;
+    }
+    @PostMapping("/viewProfile-{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String updateProfile(@PathVariable("id") int id, @ModelAttribute("profile") Profile profile){
+        profileService.updateProfile(id,profile);
+        return "redirect:/viewProfile";
     }
     @GetMapping("/itemProfile-{id}")
     public ModelAndView itemProfile(@PathVariable("id") int id){

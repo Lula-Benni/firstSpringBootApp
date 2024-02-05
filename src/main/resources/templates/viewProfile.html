@@ -5,12 +5,16 @@
 <header th:replace="~{fragments/header.html :: header}"></header>
 <div class="profile-container">
         <div class="row-view">
+        <form th:action="@{/viewProfile-{id}(id=${profile.profileId})}"
+              th:object="${profile}"
+              method="post"
+        >
                 <h2>Personal Information</h2>
                 <div class="edit-container">
                         <div class="fullName-container">
                                 <h5>Full Name</h5>
                                 <h6 th:text="${profile.fullName}">John Doe</h6>
-                                <input class="hide" type="text" id="fullName" name="fullName" placeholder="Enter FullName" />
+                                <input class="hide" type="text" id="fullName" th:field="*{fullName}" name="fullName" placeholder="Enter FullName" />
                         </div>
                         <a class="edit-fullName" href="#" onclick="onFullNameEditClick()">Edit</a>
                 </div>
@@ -21,7 +25,7 @@
                                 <h6 th:text="${profile.userName}">John Doe</h6>
                                 <input class="hide" type="text" id="userName" name="reg-username" placeholder="Enter new Username" />
                         </div>
-                        <a class="edit-userName" href="#" onclick="onUserNameEditClick()">Edit</a>
+                        <!--<a class="edit-userName" href="#" onclick="onUserNameEditClick()">Edit</a>-->
                 </div>
                 <hr>
                 <div class="edit-container">
@@ -66,6 +70,7 @@
                 <div class="submit">
                         <BUTTON class="submit" type="submit" id="submit" name="submit">Submit</BUTTON>
                 </div>
+        </form>
         </div>
 </div>
 <footer th:replace="~{fragments/footer.html :: footer}"></footer>
