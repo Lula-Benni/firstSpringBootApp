@@ -129,10 +129,20 @@ public class ViewController {
         return "redirect:/viewProfile";
     }
     @GetMapping("/itemProfile-{id}")
-    public ModelAndView itemProfile(@PathVariable("id") int id){
+    public ModelAndView getItemProfile(@PathVariable("id") int id){
         Profile profile = profileService.fetchProfile(id);
         ModelAndView mav = new ModelAndView("itemProfile");
         mav.addObject("profile",profile);
+        return mav;
+    }
+    @GetMapping("/viewMyItems")
+    public ModelAndView getProfileItems(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Profile profile = profileService.fetchProfileByUserName(username);
+        List<Item> items = profile.getItems();
+        ModelAndView mav = new ModelAndView("viewMyItems");
+        mav.addObject("items",items);
         return mav;
     }
 }

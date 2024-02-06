@@ -8,9 +8,11 @@
     <div class="h-container">
         <div class="navbar-row">
             <div class="nav-header">
-                <button class="backBtn" onclick="history.back()" sec:authorize="isAuthenticated()"><i class="fa-solid fa-angle-left"></i></button>
+                <!--<button class="backBtn" onclick="history.back()" sec:authorize="isAuthenticated()"><i class="fa-solid fa-angle-left"></i></button>-->
                 <img class="icon" src="images/icon.png" alt="icon">
-            <h4 class="nav-heading">SellUrItem</h4>
+                <a th:href="@{/home}">
+                    <h4 class="nav-heading">SellUrItem</h4>
+                </a>
             </div>
             <div class="search-bar" sec:authorize="isAuthenticated()">
                 <select class="category" name="category" id="item-category">
@@ -32,6 +34,7 @@
                     <button class="btn"><i class="fa-solid fa-user"> <i class="fa fa-caret-down"></i></i></button>
                     <div class="dropdown-content">
                         <a th:href="@{/viewProfile}">Go to Profile</a>
+                        <a th:href="@{/viewMyItems}">My Items</a>
                         <a th:href="@{/addItem}">Add Item</a>
                         <a th:href="@{/logout}">Log Out</a>
                     </div>
