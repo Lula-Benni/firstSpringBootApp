@@ -24,6 +24,6 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private Category category;
     @JoinColumn(name="profile_Id",nullable = true)
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Profile profile;
 }

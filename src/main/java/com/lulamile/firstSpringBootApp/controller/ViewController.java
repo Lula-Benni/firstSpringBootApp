@@ -81,7 +81,7 @@ public class ViewController {
         Profile profile = profileService.fetchProfileByUserName(username);
         item.setProfile(profile);
         itemService.saveItem(item);
-        return "redirect:/home";
+        return "redirect:/viewMyItems";
     }
     @GetMapping("/home")
     public ModelAndView home(){
@@ -100,7 +100,6 @@ public class ViewController {
     }
     @GetMapping("/viewProfile")
     public ModelAndView viewProfile() {
-
         Profile profile;
         Contact contact;
         Address address;
@@ -110,7 +109,6 @@ public class ViewController {
         profile = profileService.fetchProfileByUserName(username);
         contact = contactService.fetchContactById(profile.getContact().getContactId());
         address = profile.getAddress();
-
         DTO dto = new DTO(profile, contact, address);
         ModelAndView mav = new ModelAndView("viewProfile");
         mav.addObject("dto", dto);
@@ -122,7 +120,6 @@ public class ViewController {
         Profile profile = dto.getProfile();
         Contact contact = dto.getContact();
         Address address = dto.getAddress();
-
         contactService.updateContact(id,contact);
         addressService.updateAddress(id,address);
         profileService.updateProfile(id,profile);
@@ -137,6 +134,15 @@ public class ViewController {
         ModelAndView mav = new ModelAndView("viewMyItems");
         mav.addObject("items",items);
         return mav;
+    }
+    @GetMapping("/viewMyItems/{id}/delete")
+    @PreAuthorize("isAuthenticated()")
+    public String deleteItem(@PathVariable("id") int id){
+        Item item = itemService.fetchItemById(id);
+        if(item!=null){
+            itemService.deleteItem(item.getItemId());
+        }
+        return "redirect:/viewMyItems";
     }
     @GetMapping("/itemProfile-{id}")
     public ModelAndView getItemProfile(@PathVariable("id") int id){
