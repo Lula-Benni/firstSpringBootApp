@@ -5,7 +5,7 @@
 <header th:replace="~{fragments/header.html :: header}"></header>
 <div class="profile-container">
         <div class="row-view">
-        <form th:action="@{/viewProfile-{id}(id=${dto.profile.profileId})}"
+        <form th:action="@{/viewProfile/{id}/edit(id=${dto.profile.profileId})}"
               th:object="${dto}"
               method="post"
         >

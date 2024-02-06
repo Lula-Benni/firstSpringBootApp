@@ -116,7 +116,7 @@ public class ViewController {
         mav.addObject("dto", dto);
         return mav;
     }
-    @PostMapping("/viewProfile-{id}")
+    @PostMapping("/viewProfile/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     public String updateProfile(@PathVariable("id") int id, @ModelAttribute("dto") DTO dto){
         Profile profile = dto.getProfile();
@@ -128,13 +128,6 @@ public class ViewController {
         profileService.updateProfile(id,profile);
         return "redirect:/viewProfile";
     }
-    @GetMapping("/itemProfile-{id}")
-    public ModelAndView getItemProfile(@PathVariable("id") int id){
-        Profile profile = profileService.fetchProfile(id);
-        ModelAndView mav = new ModelAndView("itemProfile");
-        mav.addObject("profile",profile);
-        return mav;
-    }
     @GetMapping("/viewMyItems")
     public ModelAndView getProfileItems(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -143,6 +136,13 @@ public class ViewController {
         List<Item> items = profile.getItems();
         ModelAndView mav = new ModelAndView("viewMyItems");
         mav.addObject("items",items);
+        return mav;
+    }
+    @GetMapping("/itemProfile-{id}")
+    public ModelAndView getItemProfile(@PathVariable("id") int id){
+        Profile profile = profileService.fetchProfile(id);
+        ModelAndView mav = new ModelAndView("itemProfile");
+        mav.addObject("profile",profile);
         return mav;
     }
 }
