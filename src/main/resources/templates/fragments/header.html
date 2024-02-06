@@ -8,7 +8,7 @@
     <div class="h-container">
         <div class="navbar-row">
             <div class="nav-header">
-                <button class="backBtn" onclick="history.back()"><i class="fa-solid fa-angle-left"></i></button>
+                <button class="backBtn" onclick="history.back()" sec:authorize="isAuthenticated()"><i class="fa-solid fa-angle-left"></i></button>
                 <img class="icon" src="images/icon.png" alt="icon">
             <h4 class="nav-heading">SellUrItem</h4>
             </div>

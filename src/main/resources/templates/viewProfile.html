@@ -15,6 +15,7 @@
                                 <h5>Full Name</h5>
                                 <h6 th:text="${dto.profile.fullName}">John Doe</h6>
                                 <input class="hide" type="text" id="fullName" th:field="*{profile.fullName}" name="fullName" placeholder="Enter FullName" />
+                                <BUTTON class="hide" type="submit" id="saveName" name="saveName">Save</BUTTON>
                         </div>
                         <a class="edit-fullName" href="#" onclick="onFullNameEditClick()">Edit</a>
                 </div>
@@ -37,6 +38,7 @@
                                 <h5>Phone number</h5>
                                 <h6 th:text="${dto.contact.cellNumber}">John Doe</h6>
                                 <input class="hide" type="text" id="cellNumber" th:field="*{contact.cellNumber}" name="phone" placeholder="Enter new CellPhone number" />
+                                <BUTTON class="hide" type="submit" id="saveContact" name="saveContact">Save</BUTTON>
                         </div>
                         <a class="edit-contacts" href="#" onclick="onContactEditClick()">Edit</a>
                 </div>
@@ -56,6 +58,7 @@
                                 <input class="hide" type="text" id="country" th:field="*{address.country}" name="country" placeholder="Enter new Country Name" />
                                 <h6 th:text="${dto.address.additionalDetails}">John Doe</h6>
                                 <textarea class="hide" cols="50" id="additionalDetails" th:field="*{address.additionalDetails}" name="additional-details" placeholder="Edit additional details"></textarea>
+                                <BUTTON class="hide" type="submit" id="saveAddress" name="saveAddress">Save</BUTTON>
                         </div>
                         <a class="edit-address" href="#" onclick="onAddressEditClick()">Edit</a>
                 </div>
@@ -67,9 +70,9 @@
                         </div>
                         <a class="change-password" href="#">Change Password</a>
                 </div>
-                <div class="submit">
+                <!--<div class="submit">
                         <BUTTON class="submit" type="submit" id="submit" name="submit">Submit</BUTTON>
-                </div>
+                </div>-->
         </form>
         </div>
 </div>
