@@ -47,6 +47,7 @@
 }
 .logging{
     display: inline-block;
+    padding-left: 6rem;
 }
 .logging a{
     margin-left: 290px;

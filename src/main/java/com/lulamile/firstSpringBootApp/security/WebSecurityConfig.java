@@ -11,6 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import static org.springframework.security.authorization.AuthenticatedAuthorizationManager.rememberMe;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -40,7 +42,7 @@ public class WebSecurityConfig {
                         .passwordParameter("password")
                         .defaultSuccessUrl("/home",true)
                         .failureUrl("/login?error")
-                )
+                ).rememberMe(rememberMe -> rememberMe.key("AbcdEfghIjklmNopQrsTuvXyz_0123456789").rememberMeParameter("remember-me"))
                 .logout((logout) -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/logout?success")
