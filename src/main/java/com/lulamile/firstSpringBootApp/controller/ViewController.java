@@ -62,18 +62,18 @@ public class ViewController {
         log.info(String.valueOf(profile));
         return "redirect:/login";
     }
-    @GetMapping("/addItem")
+    @GetMapping("/add-item")
     public ModelAndView addItem(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Profile profile = profileService.fetchProfileByUserName(username);
         Item item = new Item();
         ItemDTO itemDto = new ItemDTO(item,profile);
-        ModelAndView mav = new ModelAndView("addItem");
+        ModelAndView mav = new ModelAndView("add-item");
         mav.addObject("itemDto",itemDto);
         return mav;
     }
-    @PostMapping("/addItem")
+    @PostMapping("/add-item")
     public String item_user(@ModelAttribute("itemDto") ItemDTO itemDto){
         Item item = itemDto.getItem();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -81,7 +81,7 @@ public class ViewController {
         Profile profile = profileService.fetchProfileByUserName(username);
         item.setProfile(profile);
         itemService.saveItem(item);
-        return "redirect:/viewMyItems";
+        return "redirect:/view-my-items";
     }
     @GetMapping("/home")
     public ModelAndView home(){
@@ -98,7 +98,7 @@ public class ViewController {
         }
         return "redirect:/login?logout";
     }
-    @GetMapping("/viewProfile")
+    @GetMapping("/view-profile")
     public ModelAndView viewProfile() {
         Profile profile;
         Contact contact;
@@ -110,11 +110,11 @@ public class ViewController {
         contact = contactService.fetchContactById(profile.getContact().getContactId());
         address = profile.getAddress();
         DTO dto = new DTO(profile, contact, address);
-        ModelAndView mav = new ModelAndView("viewProfile");
+        ModelAndView mav = new ModelAndView("view-profile");
         mav.addObject("dto", dto);
         return mav;
     }
-    @PostMapping("/viewProfile/{id}/edit")
+    @PostMapping("/view-profile/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     public String updateProfile(@PathVariable("id") int id, @ModelAttribute("dto") DTO dto){
         Profile profile = dto.getProfile();
@@ -123,31 +123,31 @@ public class ViewController {
         contactService.updateContact(id,contact);
         addressService.updateAddress(id,address);
         profileService.updateProfile(id,profile);
-        return "redirect:/viewProfile";
+        return "redirect:/view-profile";
     }
-    @GetMapping("/viewMyItems")
+    @GetMapping("/view-my-items")
     public ModelAndView getProfileItems(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Profile profile = profileService.fetchProfileByUserName(username);
         List<Item> items = profile.getItems();
-        ModelAndView mav = new ModelAndView("viewMyItems");
+        ModelAndView mav = new ModelAndView("view-my-items");
         mav.addObject("items",items);
         return mav;
     }
-    @GetMapping("/viewMyItems/{id}/delete")
+    @GetMapping("/view-my-items/{id}/delete")
     @PreAuthorize("isAuthenticated()")
     public String deleteItem(@PathVariable("id") int id){
         Item item = itemService.fetchItemById(id);
         if(item!=null){
             itemService.deleteItem(item.getItemId());
         }
-        return "redirect:/viewMyItems";
+        return "redirect:/view-my-items";
     }
-    @GetMapping("/itemProfile-{id}")
+    @GetMapping("/item-profile-{id}")
     public ModelAndView getItemProfile(@PathVariable("id") int id){
         Profile profile = profileService.fetchProfile(id);
-        ModelAndView mav = new ModelAndView("itemProfile");
+        ModelAndView mav = new ModelAndView("item-profile");
         mav.addObject("profile",profile);
         return mav;
     }

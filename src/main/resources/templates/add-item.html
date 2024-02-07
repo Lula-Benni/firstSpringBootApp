@@ -5,7 +5,7 @@
 <header th:replace="~{fragments/header.html :: header}"></header>
 <div class="item-container">
     <div class="item-column">
-        <form th:action="@{/addItem}"
+        <form th:action="@{/add-item}"
               th:object="${itemDto}"
               method="post"
         >

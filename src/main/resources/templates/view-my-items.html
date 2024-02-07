@@ -16,10 +16,10 @@
             <p class="card-text" th:text="${item.category}">Some example text.</p>
             <ul class="nav justify-content-center nav-justified">
                 <li class="nav-item">
-                    <a class="fa-solid fa-trash" style="color: red;" th:href="@{/viewMyItems/{id}/delete(id=${item.itemId})}" ></a>
+                    <a class="fa-solid fa-trash" style="color: red;" th:href="@{/view-my-items/{id}/delete(id=${item.itemId})}" ></a>
                 </li>
                 <li class="nav-item">
-                    <a class="fa-solid fa-pencil" href="#" ></a>
+                    <a class="fa-solid fa-pencil" th:href="@{/edit-item}" ></a>
                 </li>
             </ul>
         </div>
