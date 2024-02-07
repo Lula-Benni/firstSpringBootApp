@@ -151,4 +151,23 @@ public class ViewController {
         mav.addObject("profile",profile);
         return mav;
     }
+    @GetMapping("/edit-item-{id}")
+    public ModelAndView editItem(@PathVariable("id") int id){
+        Profile profile;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        profile = profileService.fetchProfileByUserName(username);
+        Item item = itemService.fetchItemById(id);
+        ItemDTO itemDTO = new ItemDTO(item,profile);
+        ModelAndView mav = new ModelAndView("edit-item");
+        mav.addObject("itemDTO",itemDTO);
+        return mav;
+    }
+    @PostMapping("/edit-item/{id}/edit")
+    @PreAuthorize("isAuthenticated()")
+    public String updateItem(@PathVariable("id") int id,@ModelAttribute("itemDTO") ItemDTO itemDTO){
+        Item item = itemDTO.getItem();
+        itemService.updateItem(id,item);
+        return "redirect:/edit-item-"+id;
+    }
 }

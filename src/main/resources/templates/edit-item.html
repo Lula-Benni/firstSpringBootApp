@@ -5,42 +5,41 @@
 <header th:replace="~{fragments/header.html :: header}"></header>
 <div class="profile-container">
     <div class="row-view">
-        <form th:action="@{/edit-item}"
-              th:object="${item}"
+        <form th:action="@{/edit-item/{id}/edit(id=${itemDTO.item.itemId})}"
+              th:object="${itemDTO}"
               method="post"
         >
             <h2>Personal Information</h2>
             <div class="edit-container">
                 <div class="fullName-container">
                     <h5>Item Name</h5>
-                    <h6 th:text="${item.itemName}">John Doe</h6>
-                    <input class="hide" type="text" id="itemName" th:field="*{item.fullName}" name="item-name" placeholder="Enter FullName" />
-                    <BUTTON class="hide" type="submit" id="saveName" name="saveName">Save</BUTTON>
+                    <h6 th:text="${itemDTO.item.itemName}">John Doe</h6>
+                    <input class="hide" type="text" id="itemName" th:field="*{item.itemName}" name="item-name" placeholder="Enter FullName" />
+                    <BUTTON class="hide" type="submit" id="saveItemName" name="save-item-name">Save</BUTTON>
                 </div>
-                <a class="edit-fullName" href="#">Edit</a>
+                <a class="edit-fullName" href="#" onclick="onItemNameEditClick()">Edit</a>
             </div>
             <hr>
             <div class="edit-container">
                 <div class="userName-container">
                     <h5>Item Price</h5>
-                    <h6 th:text="${item.itemPrice}">John Doe</h6>
-                    <input class="hide" type="text" id="itemPrice" th:field="*{item.itemPrice}" name="item-price" placeholder="Enter new Username" />
+                    <h6 th:text="${itemDTO.item.itemPrice}">John Doe</h6>
+                    <input class="hide" type="number" id="itemPrice" th:field="*{item.itemPrice}" name="item-price" placeholder="Enter new Username" />
+                    <BUTTON class="hide" type="submit" id="saveItemPrice" name="save-item-price">Save</BUTTON>
                 </div>
-                <a class="edit-userName" href="#">Edit</a>
+                <a class="edit-userName" href="#" onclick="onItemPriceEditClick()">Edit</a>
             </div>
             <hr>
             <div class="edit-container">
                 <div class="userName-container">
                     <h5>Item Description</h5>
-                    <h6 th:text="${item.itemDescription}">John Doe</h6>
+                    <h6 th:text="${itemDTO.item.itemDescription}">John Doe</h6>
                     <input class="hide" type="text" id="itemDescription" th:field="*{item.itemDescription}" name="item-description" placeholder="Enter new Username" />
+                    <BUTTON class="hide" type="submit" id="saveItemDescription" name="save-item-description">Save</BUTTON>
                 </div>
-                <a class="edit-userName" href="#">Edit</a>
+                <a class="edit-userName" href="#" onclick="onItemDescriptionEditClick()">Edit</a>
             </div>
             <hr>
-            <div class="submit">
-                    <BUTTON class="submit" type="submit" id="submit" name="submit">Save</BUTTON>
-            </div>
         </form>
     </div>
 </div>
