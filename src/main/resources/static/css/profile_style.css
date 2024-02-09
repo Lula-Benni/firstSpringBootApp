@@ -40,3 +40,16 @@
 .show{
   display:block;
 }
+.edit-container BUTTON{
+        margin-top: 8px;
+        background-color: gray;
+        color: #fff;
+        border: 2px solid gray;
+        border-radius: 8px;
+        width: 55px;
+        height: 36px;
+}
+.edit-container BUTTON:hover{
+    color: black;
+    background-color: white;
+}
