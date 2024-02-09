@@ -144,13 +144,13 @@ public class ViewController {
         }
         return "redirect:/view-my-items";
     }
-    /*@GetMapping("/item-profile-{id}")
+    @GetMapping("/item-profile-{id}")
     public ModelAndView getItemProfile(@PathVariable("id") int id){
         Profile profile = profileService.fetchProfile(id);
         ModelAndView mav = new ModelAndView("item-profile");
         mav.addObject("profile",profile);
         return mav;
-    }*/
+    }
     @GetMapping("/edit-item-{id}")
     public ModelAndView editItem(@PathVariable("id") int id){
         Profile profile;
