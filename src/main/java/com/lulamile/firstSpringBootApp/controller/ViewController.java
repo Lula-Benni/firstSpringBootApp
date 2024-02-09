@@ -60,7 +60,7 @@ public class ViewController {
         profile.setAddress(address);
         profileService.saveProfile(profile);
         log.info(String.valueOf(profile));
-        return "redirect:/login";
+        return "redirect:/register";
     }
     @GetMapping("/add-item")
     public ModelAndView addItem(){
