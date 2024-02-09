@@ -17,7 +17,7 @@
                                 <input class="hide" type="text" id="fullName" th:field="*{profile.fullName}" name="fullName" placeholder="Enter FullName" />
                                 <BUTTON class="hide" type="submit" id="saveName" name="saveName">Save</BUTTON>
                         </div>
-                        <a class="edit-fullName" href="#" onclick="onFullNameEditClick()">Edit</a>
+                        <a class="edit-fullName" id="edit-btn-full-name" href="#" onclick="onFullNameEditClick()">Edit</a>
                 </div>
                 <hr>
                 <div class="edit-container">
@@ -39,7 +39,7 @@
                                 <input class="hide" type="text" id="cellNumber" th:field="*{contact.cellNumber}" name="phone" placeholder="Enter new CellPhone number" />
                                 <BUTTON class="hide" type="submit" id="saveContact" name="saveContact">Save</BUTTON>
                         </div>
-                        <a class="edit-contacts" href="#" onclick="onContactEditClick()">Edit</a>
+                        <a class="edit-contacts" id="edit-btn-contact" href="#" onclick="onContactEditClick()">Edit</a>
                 </div>
                 <hr>
                 <div class="edit-container">
@@ -59,7 +59,7 @@
                                 <textarea class="hide" cols="50" id="additionalDetails" th:field="*{address.additionalDetails}" name="additional-details" placeholder="Edit additional details"></textarea>
                                 <BUTTON class="hide" type="submit" id="saveAddress" name="saveAddress">Save</BUTTON>
                         </div>
-                        <a class="edit-address" href="#" onclick="onAddressEditClick()">Edit</a>
+                        <a class="edit-address" id="edit-btn-address" href="#" onclick="onAddressEditClick()">Edit</a>
                 </div>
                 <hr>
                 <div class="edit-container">

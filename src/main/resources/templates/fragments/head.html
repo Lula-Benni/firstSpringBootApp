@@ -21,33 +21,86 @@
     <link rel="icon" type="image/x-icon" href="/images/icon.png">
     <script>
         function onFullNameEditClick(){
-        document.getElementById('fullName').className="show";
-        document.getElementById('saveName').className="show";
+        if (document.getElementById('edit-btn-full-name').innerHTML === 'Edit'){
+            document.getElementById('edit-btn-full-name').innerHTML = 'Cancel';
+            document.getElementById('fullName').className="show";
+            document.getElementById('saveName').className="show";
+            }
+            else {
+            document.getElementById('edit-btn-full-name').innerHTML = 'Edit';
+            document.getElementById('fullName').className="hide";
+            document.getElementById('saveName').className="hide";
+            }
         }
         function onContactEditClick(){
-        document.getElementById('cellNumber').className="show";
-        document.getElementById('saveContact').className="show";
+        if (document.getElementById('edit-btn-contact').innerHTML === 'Edit'){
+            document.getElementById('edit-btn-contact').innerHTML = 'Cancel';
+            document.getElementById('cellNumber').className="show";
+            document.getElementById('saveContact').className="show";
+            }
+            else {
+            document.getElementById('edit-btn-contact').innerHTML = 'Edit';
+            document.getElementById('cellNumber').className="hide";
+            document.getElementById('saveContact').className="hide";
+            }
         }
         function onAddressEditClick(){
-        document.getElementById('street').className="show";
-        document.getElementById('city').className="show";
-        document.getElementById('postalCode').className="show";
-        document.getElementById('state').className="show";
-        document.getElementById('country').className="show";
-        document.getElementById('additionalDetails').className="show";
-        document.getElementById('saveAddress').className="show";
+        if (document.getElementById('edit-btn-address').innerHTML === 'Edit'){
+            document.getElementById('edit-btn-address').innerHTML = 'Cancel';
+            document.getElementById('street').className="show";
+            document.getElementById('city').className="show";
+            document.getElementById('postalCode').className="show";
+            document.getElementById('state').className="show";
+            document.getElementById('country').className="show";
+            document.getElementById('additionalDetails').className="show";
+            document.getElementById('saveAddress').className="show";
+            }
+            else {
+            document.getElementById('edit-btn-address').innerHTML = 'Edit';
+            document.getElementById('street').className="hide";
+            document.getElementById('city').className="hide";
+            document.getElementById('postalCode').className="hide";
+            document.getElementById('state').className="hide";
+            document.getElementById('country').className="hide";
+            document.getElementById('additionalDetails').className="hide";
+            document.getElementById('saveAddress').className="hide";
+            }
         }
         function onItemNameEditClick(){
-        document.getElementById('itemName').className="show";
-        document.getElementById('saveItemName').className="show";
+        if (document.getElementById('edit-btn-item-name').innerHTML === 'Edit'){
+            document.getElementById('edit-btn-item-name').innerHTML = 'Cancel';
+            document.getElementById('itemName').className="show";
+            document.getElementById('saveItemName').className="show";
+            }
+            else {
+            document.getElementById('edit-btn-item-name').innerHTML = 'Edit';
+            document.getElementById('itemName').className="hide";
+            document.getElementById('saveItemName').className="hide";
+            }
         }
         function onItemPriceEditClick(){
-        document.getElementById('itemPrice').className="show";
-        document.getElementById('saveItemPrice').className="show";
+        if (document.getElementById('edit-btn-item-price').innerHTML === 'Edit'){
+            document.getElementById('edit-btn-item-price').innerHTML = 'Cancel';
+            document.getElementById('itemPrice').className="show";
+            document.getElementById('saveItemPrice').className="show";
+            }
+            else {
+            document.getElementById('edit-btn-item-price').innerHTML = 'Edit';
+            document.getElementById('itemPrice').className="hide";
+            document.getElementById('saveItemPrice').className="hide";
+            }
         }
         function onItemDescriptionEditClick(){
-        document.getElementById('itemDescription').className="show";
-        document.getElementById('saveItemDescription').className="show";
+        if (document.getElementById('edit-btn-item-description').innerHTML === 'Edit'){
+            document.getElementById('edit-btn-item-description').innerHTML = 'Cancel';
+            document.getElementById('itemDescription').className="show";
+            document.getElementById('saveItemDescription').className="show";
+            }
+            else {
+            document.getElementById('edit-btn-item-description').innerHTML = 'Edit';
+            document.getElementById('itemDescription').className="hide";
+            document.getElementById('saveItemDescription').className="hide";
+            }
         }
     </script>
 </head>
