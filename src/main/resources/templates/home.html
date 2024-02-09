@@ -17,13 +17,13 @@
                 <!--<p class="card-text" th:text="${item.profile}">Profile Name</p>-->
                 <ul class="nav justify-content-center nav-justified">
                     <li class="nav-item">
-                    <a class="fa-solid fa-bookmark" href="#" ></a>
+                    <a class="fa-solid fa-bookmark" href="#" style="text-decoration: none;"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="fa-solid fa-comment" href="#" ></a>
+                        <a class="fa-solid fa-comment" href="#" style="text-decoration: none;" ></a>
                     </li>
                     <li class="nav-item">
-                        <a class="fa-solid fa-user" th:href="@{/item-profile-{id}(id=${item.profile.profileId})}" ></a>
+                        <a class="fa-solid fa-user" th:href="@{/item-profile-{id}(id=${item.profile.profileId})}" style="text-decoration: none;"></a>
                     </li>
                     <!--<a th:href="@{/itemProfile-{id}(id=${item.profile.profileId})}" class="btn btn-primary">See Profile</a>-->
                 </ul>

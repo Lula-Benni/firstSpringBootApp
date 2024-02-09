@@ -8,64 +8,58 @@
 footer .f-container{
     background-color: black;
 }
-.row{
+.row-items{
     display: flex;
     justify-content: space-between;
     padding: 40px 100px;
 }
-.column ul{
+.column-items ul{
     list-style: none;
 }
-.column h4{
+.column-items h4{
     color: white;
     margin-bottom: 25px;
     font-size: 22px;
     position: relative;
     font-family: 'Ubuntu Mono', monospace;
+    left: 1.9rem;
 }
-.column h4::before{
-    content: '';
-    width: 10 0px;
-    height: 2px;
-    position: absolute;
-    background-color: #e91e64;
-    bottom: -10px;
-}
-.column ul li{
+.column-items ul li{
     padding 10px 0;
 }
-.column ul li a{
+.column-items ul li a{
     color: white;
     text-decoration: none;
     font-sizeL 16px;
     opacity: 0.7;
     transition: 0.5s;
+    margin-right: 5rem;
 }
-.column ul li a:hover{
+.column-items ul li a:hover{
     opacity: 2;
 }
 .col p{
     color: white;
 }
-.row hr{
+.row-items hr{
     opacity: 0.7;
 }
-.row .socialIcons i{
+.row-items .social-media-icons i{
     display: inline-block;
     color: white;
     font-size: 20px;
     margin: 0 15px;
     transition: 0.5s;
 }
-.row .socialIcons i:hover{
+.row-items .social-media-icons i:hover{
     color: #e91e64;
 }
 @media (max-width: 600px){
-    footer .row{
+    footer .row-items{
         flex-direction: column;
         padding: 20px 30px;
     }
-    footer .column ul{
+    footer .column-items ul{
         margin-left: 20px;
         margin-bottom: 20px;
     }

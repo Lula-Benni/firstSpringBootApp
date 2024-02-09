@@ -9,7 +9,7 @@
         <div class="navbar-row">
             <div class="nav-header">
                 <!--<button class="backBtn" onclick="history.back()" sec:authorize="isAuthenticated()"><i class="fa-solid fa-angle-left"></i></button>-->
-                <a th:href="@{/home}" style="text-decoration: none;">
+                <a th:href="@{/home}" style="text-decoration: none;" sec:authorize="isAuthenticated()">
                     <img class="icon" src="images/icon.png" alt="icon">
                     <h4 class="nav-heading">SellUrItem</h4>
                 </a>
