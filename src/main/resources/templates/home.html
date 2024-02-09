@@ -23,11 +23,57 @@
                         <a class="fa-solid fa-comment" href="#" style="text-decoration: none;" ></a>
                     </li>
                     <li class="nav-item">
-                        <a class="fa-solid fa-user" th:href="@{/item-profile-{id}(id=${item.profile.profileId})}" style="text-decoration: none;"></a>
+                        <a data-bs-toggle="modal" data-bs-target="#myModal" class="fa-solid fa-user" href="" style="text-decoration: none;"></a>
                     </li>
                     <!--<a th:href="@{/itemProfile-{id}(id=${item.profile.profileId})}" class="btn btn-primary">See Profile</a>-->
                 </ul>
             </div>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h2 class="modal-title">Seller Information</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="seller-profile">
+                            <h5>Name & surname</h5>
+                            <h6 th:text="${item.profile.fullName}">John Doe</h6>
+                            <hr>
+                            <h5>Username</h5>
+                            <h6 th:text="${item.profile.userName}">John Doe</h6>
+                            <hr>
+                            <h4>Contacts</h4>
+                            <h5>Email</h5>
+                            <h6 th:text="${item.profile.contact.emails}">John Doe</h6>
+                            <h5>Phone number</h5>
+                            <h6 th:text="${item.profile.contact.cellNumber}">John Doe</h6>
+                            <hr>
+                            <h4>Address</h4>
+                            <h6 th:text="${item.profile.address.street}">John Doe</h6>
+                            <h6 th:text="${item.profile.address.city}">John Doe</h6>
+                            <h6 th:text="${item.profile.address.postalCode}">John Doe</h6>
+                            <h6 th:text="${item.profile.address.state}">John Doe</h6>
+                            <h6 th:text="${item.profile.address.country}">John Doe</h6>
+                            <h6 th:text="${item.profile.address.additionalDetails}">John Doe</h6>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
             </div>
         </div>
     </div>
