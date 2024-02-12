@@ -19,7 +19,7 @@ public class Contact {
     private String emails;
     @Column(nullable = true)
     private String cellNumber;
-    @OneToOne(mappedBy = "contact")
-    private Profile profile;
+    //@OneToOne(mappedBy = "contact")
+    //private Profile profile;
 }
 
