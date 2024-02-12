@@ -17,7 +17,7 @@
                     <input class="hide" type="text" id="itemName" th:field="*{item.itemName}" name="item-name" placeholder="Enter FullName" />
                     <BUTTON class="hide" type="submit" id="saveItemName" name="save-item-name">Save</BUTTON>
                 </div>
-                <a class="edit-fullName" id="edit-btn-item-name" href="#" onclick="onItemNameEditClick()">Edit</a>
+                <a class="edit-fullName" id="edit-btn-item-name" style="cursor: pointer;" onclick="onItemNameEditClick()">Edit</a>
             </div>
             <hr>
             <div class="edit-container">
@@ -27,7 +27,14 @@
                     <input class="hide" type="number" id="itemPrice" th:field="*{item.itemPrice}" name="item-price" placeholder="Enter new Username" />
                     <BUTTON class="hide" type="submit" id="saveItemPrice" name="save-item-price">Save</BUTTON>
                 </div>
-                <a class="edit-userName" id="edit-btn-item-price" href="#" onclick="onItemPriceEditClick()">Edit</a>
+                <a class="edit-userName" id="edit-btn-item-price" style="cursor: pointer;" onclick="onItemPriceEditClick()">Edit</a>
+            </div>
+            <hr>
+            <div class="edit-container">
+                <div class="userName-container">
+                    <h5>Item Category</h5>
+                    <h6 th:text="${itemDTO.item.category}">John Doe</h6>
+                </div>
             </div>
             <hr>
             <div class="edit-container">
@@ -37,7 +44,7 @@
                     <input class="hide" type="text" id="itemDescription" th:field="*{item.itemDescription}" name="item-description" placeholder="Enter new Username" />
                     <BUTTON class="hide" type="submit" id="saveItemDescription" name="save-item-description">Save</BUTTON>
                 </div>
-                <a class="edit-userName" id="edit-btn-item-description" href="#" onclick="onItemDescriptionEditClick()">Edit</a>
+                <a class="edit-userName" id="edit-btn-item-description" style="cursor: pointer;" onclick="onItemDescriptionEditClick()">Edit</a>
             </div>
             <hr>
         </form>

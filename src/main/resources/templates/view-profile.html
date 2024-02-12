@@ -5,74 +5,81 @@
 <header th:replace="~{fragments/header.html :: header}"></header>
 <div class="profile-container">
         <div class="row-view">
-        <form th:action="@{/view-profile/{id}/edit(id=${dto.profile.profileId})}"
-              th:object="${dto}"
-              method="post"
-        >
-                <h2>Personal Information</h2>
-                <div class="edit-container">
-                        <div class="fullName-container">
-                                <h5>Full Name</h5>
-                                <h6 th:text="${dto.profile.fullName}">John Doe</h6>
-                                <input class="hide" type="text" id="fullName" th:field="*{profile.fullName}" name="fullName" placeholder="Enter FullName" />
-                                <BUTTON class="hide" type="submit" id="saveName" name="saveName">Save</BUTTON>
+                <form th:action="@{/view-profile/{id}/edit(id=${dto.profile.profileId})}"
+                      th:object="${dto}"
+                      method="post"
+                >
+                        <h2>Personal Information</h2>
+                        <div class="edit-container">
+                                <div class="fullName-container">
+                                        <h5>Full Name</h5>
+                                        <h6 th:text="${dto.profile.fullName}">John Doe</h6>
+                                        <input class="hide" type="text" id="fullName" th:field="*{profile.fullName}" name="fullName" placeholder="Enter FullName" />
+                                        <BUTTON class="hide" type="submit" id="saveName" name="saveName">Save</BUTTON>
+                                </div>
+                                <a class="edit-fullName" id="edit-btn-full-name" style="cursor: pointer;" onclick="onFullNameEditClick()">Edit</a>
                         </div>
-                        <a class="edit-fullName" id="edit-btn-full-name" href="#" onclick="onFullNameEditClick()">Edit</a>
-                </div>
-                <hr>
-                <div class="edit-container">
-                        <div class="userName-container">
-                                <h5>Username</h5>
-                                <h6 th:text="${dto.profile.userName}">John Doe</h6>
-                                <input class="hide" type="text" id="userName" name="reg-username" placeholder="Enter new Username" />
+                        <hr>
+                        <div class="edit-container">
+                                <div class="userName-container">
+                                        <h5>Gender</h5>
+                                        <h6 th:text="${dto.profile.gender}">John Doe</h6>
+                                </div>
                         </div>
-                        <!--<a class="edit-userName" href="#" onclick="onUserNameEditClick()">Edit</a>-->
-                </div>
-                <hr>
-                <div class="edit-container">
-                        <div class="contacts-container">
-                                <h4>Contact</h4>
-                                <h5>Email</h5>
-                                <h6 th:text="${dto.contact.emails}">John Doe</h6>
-                                <h5>Phone number</h5>
-                                <h6 th:text="${dto.contact.cellNumber}">John Doe</h6>
-                                <input class="hide" type="text" id="cellNumber" th:field="*{contact.cellNumber}" name="phone" placeholder="Enter new CellPhone number" />
-                                <BUTTON class="hide" type="submit" id="saveContact" name="saveContact">Save</BUTTON>
+                        <hr>
+                        <div class="edit-container">
+                                <div class="userName-container">
+                                        <h5>Username</h5>
+                                        <h6 th:text="${dto.profile.userName}">John Doe</h6>
+                                        <input class="hide" type="text" id="userName" name="reg-username" placeholder="Enter new Username" />
+                                </div>
+                                <!--<a class="edit-userName" style="cursor: pointer;" onclick="onUserNameEditClick()">Edit</a>-->
                         </div>
-                        <a class="edit-contacts" id="edit-btn-contact" href="#" onclick="onContactEditClick()">Edit</a>
-                </div>
-                <hr>
-                <div class="edit-container">
-                        <div class="address-container">
-                                <h4>Address</h4>
-                                <h6 th:text="${dto.address.street}">John Doe</h6>
-                                <input class="hide" type="text" id="street" th:field="*{address.street}" name="street" placeholder="Enter new Street Name" />
-                                <h6 th:text="${dto.address.city}">John Doe</h6>
-                                <input class="hide" type="text" id="city" th:field="*{address.city}" name="city" placeholder="Enter new City Name" />
-                                <h6 th:text="${dto.address.postalCode}">John Doe</h6>
-                                <input class="hide" type="text" id="postalCode" th:field="*{address.postalCode}" name="postal-code" placeholder="Enter new Postal Code" />
-                                <h6 th:text="${dto.address.state}">John Doe</h6>
-                                <input class="hide" type="text" id="state" th:field="*{address.state}" name="state" placeholder="Enter new State" />
-                                <h6 th:text="${dto.address.country}">John Doe</h6>
-                                <input class="hide" type="text" id="country" th:field="*{address.country}" name="country" placeholder="Enter new Country Name" />
-                                <h6 th:text="${dto.address.additionalDetails}">John Doe</h6>
-                                <textarea class="hide" cols="50" id="additionalDetails" th:field="*{address.additionalDetails}" name="additional-details" placeholder="Edit additional details"></textarea>
-                                <BUTTON class="hide" type="submit" id="saveAddress" name="saveAddress">Save</BUTTON>
+                        <hr>
+                        <div class="edit-container">
+                                <div class="contacts-container">
+                                        <h4>Contact</h4>
+                                        <h5>Email</h5>
+                                        <h6 th:text="${dto.contact.emails}">John Doe</h6>
+                                        <h5>Phone number</h5>
+                                        <h6 th:text="${dto.contact.cellNumber}">John Doe</h6>
+                                        <input class="hide" type="text" id="cellNumber" th:field="*{contact.cellNumber}" name="phone" placeholder="Enter new CellPhone number" />
+                                        <BUTTON class="hide" type="submit" id="saveContact" name="saveContact">Save</BUTTON>
+                                </div>
+                                <a class="edit-contacts" id="edit-btn-contact" style="cursor: pointer;" onclick="onContactEditClick()">Edit</a>
                         </div>
-                        <a class="edit-address" id="edit-btn-address" href="#" onclick="onAddressEditClick()">Edit</a>
-                </div>
-                <hr>
-                <div class="edit-container">
-                        <div class="password-container">
-                                <h5>Security</h5>
-                                <h6 th:text="${dto.profile.password}">John Doe</h6>
+                        <hr>
+                        <div class="edit-container">
+                                <div class="address-container">
+                                        <h4>Address</h4>
+                                        <h6 th:text="${dto.address.street}">John Doe</h6>
+                                        <input class="hide" type="text" id="street" th:field="*{address.street}" name="street" placeholder="Enter new Street Name" />
+                                        <h6 th:text="${dto.address.city}">John Doe</h6>
+                                        <input class="hide" type="text" id="city" th:field="*{address.city}" name="city" placeholder="Enter new City Name" />
+                                        <h6 th:text="${dto.address.postalCode}">John Doe</h6>
+                                        <input class="hide" type="text" id="postalCode" th:field="*{address.postalCode}" name="postal-code" placeholder="Enter new Postal Code" />
+                                        <h6 th:text="${dto.address.state}">John Doe</h6>
+                                        <input class="hide" type="text" id="state" th:field="*{address.state}" name="state" placeholder="Enter new State" />
+                                        <h6 th:text="${dto.address.country}">John Doe</h6>
+                                        <input class="hide" type="text" id="country" th:field="*{address.country}" name="country" placeholder="Enter new Country Name" />
+                                        <h6 th:text="${dto.address.additionalDetails}">John Doe</h6>
+                                        <textarea class="hide" cols="50" id="additionalDetails" th:field="*{address.additionalDetails}" name="additional-details" placeholder="Edit additional details"></textarea>
+                                        <BUTTON class="hide" type="submit" id="saveAddress" name="saveAddress">Save</BUTTON>
+                                </div>
+                                <a class="edit-address" id="edit-btn-address" style="cursor: pointer;" onclick="onAddressEditClick()">Edit</a>
                         </div>
-                        <a class="change-password" href="#">Change Password</a>
-                </div>
-                <!--<div class="submit">
-                        <BUTTON class="submit" type="submit" id="submit" name="submit">Submit</BUTTON>
-                </div>-->
-        </form>
+                        <hr>
+                        <div class="edit-container">
+                                <div class="password-container">
+                                        <h5>Security</h5>
+                                        <h6 th:text="${dto.profile.password}">John Doe</h6>
+                                </div>
+                                <a class="change-password" style="cursor: pointer;">Change Password</a>
+                        </div>
+                        <!--<div class="submit">
+                                <BUTTON class="submit" type="submit" id="submit" name="submit">Submit</BUTTON>
+                        </div>-->
+                </form>
         </div>
 </div>
 <footer th:replace="~{fragments/footer.html :: footer}"></footer>
