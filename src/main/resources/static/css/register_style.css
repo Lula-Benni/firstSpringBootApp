@@ -5,64 +5,8 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-.register-container{
-     margin: auto;
-     width: 50%;
-     padding: 10px;
-     border:2px solid;
-     margin-top: 10px;
-     margin-bottom: 10px;
-     border-radius: 20px;
-}
-.register-column{
-    display: inline-block;
-}
-.register-row{
-    display: flex;
-    justify-content: space-between;
-    padding: 40px 100px;
-}
-.login-row h4{
-    margin-right:70px;
-}
-.register-row input{
-    margin-left: 40px;
-}
-.address{
-    padding-left: 70px;
-}
-.label-name{
-    padding-left: 29px;
-    font-weight: bold;
-}
-.address-row{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 100px;
-}
-.address-row h5{
-    margin-right:20px;
-}
-.address-row input-address{
-    margin-left: 40px;
-}
-.additional-address{
-    margin-left: 40px;
-    width: 167px;
-    height: 200px;
-}
-.gender{
-    padding-left: 100px;
-}
-.gender-row{
-    padding-left: 225px;
-    margin-bottom: 40px;
-}
-.gender h4{
-    margin-right:70px;
-}
-.submit{
-    margin: auto;
+.register-btn{
     width: 50%;
-    margin-left: 28%;
+    margin-top: 8%;
+    border-radius: 5px;
 }
