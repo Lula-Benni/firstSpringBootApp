@@ -7,9 +7,12 @@ import com.lulamile.firstSpringBootApp.service.AddressService;
 import com.lulamile.firstSpringBootApp.service.ContactService;
 import com.lulamile.firstSpringBootApp.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProfileController {
@@ -42,5 +45,10 @@ public class ProfileController {
     @GetMapping("/profile/username/{username}")
     public Profile fetchProfileByUserName(@PathVariable("username") String userName){
         return profileService.fetchProfileByUserName(userName);
+    }
+    @GetMapping("/by-email")
+    public ResponseEntity<Optional<Profile>> getProfileByEmail(@RequestParam String emails) {
+        Optional<Profile> profile = profileService.fetchProfileByEmail(emails);
+        return new ResponseEntity<>(profile, HttpStatus.OK);
     }
 }
