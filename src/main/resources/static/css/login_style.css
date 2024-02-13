@@ -5,50 +5,36 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-.login-container{
-     margin: auto;
-     width: 50%;
-     padding: 10px;
-     border:2px solid;
-     margin-top: 10px;
-     margin-bottom: 10px;
-     border-radius: 20px;
-}
-.login-column{
-    display: inline-block;
-}
-.login-row{
-    display: flex;
-    justify-content: space-between;
-    padding: 50px 100px;
-}
-.login-row h4{
-    color: black;
-    margin-right: 70px;
-}
 .input{
     width: 220px;
 }
-.login-column a{
-    font-size: 12px;
-    font-color: grey;
-}
 .login-btn{
-    margin-left: 220px;
     width: 40%;
+    margin: 6% 0%;
 }
-.register{
-    display: flex;
-    padding-top: 10px;
-    padding-left:190px;
+.form-check-input{
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 80%;
+    border-color: black;
 }
-.register a{
-    padding-left: 7px;
+.form-check-label{
+    font-size: 13px;
+    padding-left: 6%;
 }
-.logging{
-    display: inline-block;
-    padding-left: 6rem;
+.forgot-password-label{
+    font-size: 13px;
 }
-.logging a{
-    margin-left: 290px;
+.register-label{
+    font-size: 13px;
+    position: absolute;
+    top: 86%;
+    left: 57%
+}
+.account-label{
+    font-size: 13px;
+}
+.account-label{
+    font-size: 13px;
 }
