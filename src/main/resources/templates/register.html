@@ -9,7 +9,7 @@
       method="post"
         >
     <div class="card" style="width: 350px; display: flex; margin: 45px 20px; margin-left: 40%; align-items: center; border:none; border-color: black; border-radius:10px; ">
-        <div class="card-body" style="width: 350px; margin-left: 40%; align-items: center; border:none; border-color: black; border-radius:10px;">
+        <div class="card-body" style="width: 350px; border:none;">
             <h5>Full Name</h5>
             <input class="input" type="text" th:field="${dto.profile.fullName}" id="fullName" name="fullName" placeholder="Enter your Full Name">
 
@@ -22,7 +22,7 @@
             <h5>Phone Number</h5>
             <input class="input" type="text" th:field="${dto.contact.cellNumber}" id="cellNumber" name="phone" placeholder="Enter your Phone Number">
 
-            <h4>Date Of Birth</h4>
+            <h5>Date Of Birth</h5>
             <input class="input" type="date" th:field="${dto.profile.dateOfBirth}" id="dateOfBirth" name="date-of-birth" placeholder="Enter your Date Of Birth">
 
             <h5>Gender</h5>
@@ -36,7 +36,7 @@
             </div>
 
             <fieldset>
-                <legend class="label-name">Address</legend>
+                <h5>Address</h5>
                     <h5>Street</h5>
                     <input class="input-address" type="text" th:field="${dto.address.street}" id="street" name="street" placeholder="Enter street name">
 

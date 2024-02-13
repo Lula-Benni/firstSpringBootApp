@@ -13,23 +13,22 @@
 }
 .edit-fullName{
     position: absolute;
-    left: 69rem;
-}
-.edit-userName{
-    position: absolute;
-    left: 69rem;
+    left: 72.7%;
 }
 .edit-contacts{
     position: absolute;
-    left: 69rem;
+    left: 72.7%;
+    float: right;
 }
 .edit-address{
     position: absolute;
-    left: 69rem;
+    left: 72.7%;
+    float: right;
 }
 .change-password{
     position: absolute;
-    left: 61.8rem;
+    left: 67%;
+    float: right;
 }
 .edit-container{
     display: flex;
