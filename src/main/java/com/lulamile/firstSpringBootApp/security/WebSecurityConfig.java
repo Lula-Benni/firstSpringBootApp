@@ -28,7 +28,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers(mvc.pattern("/login"), mvc.pattern("/register"),mvc.pattern("/forgot-password")
+                        .requestMatchers(mvc.pattern("/login"), mvc.pattern("/reset-password"), mvc.pattern("/register"),mvc.pattern("/forgot-password")
                                 ,mvc.pattern("/css/**"),mvc.pattern("/fonts/**"),mvc.pattern("/images/**"),mvc.pattern("/js/**"))
                         .permitAll()
                         .anyRequest()
