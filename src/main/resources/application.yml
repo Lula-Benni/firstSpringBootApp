@@ -6,6 +6,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: Sinawo@%__1
+  devtools:
+    restart:
+      poll-interval: 2s
   jpa:
     hibernate:
       ddl-auto: update
