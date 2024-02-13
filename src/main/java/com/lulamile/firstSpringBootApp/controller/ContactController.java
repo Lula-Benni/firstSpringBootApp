@@ -1,6 +1,7 @@
 package com.lulamile.firstSpringBootApp.controller;
 
 import com.lulamile.firstSpringBootApp.entity.Contact;
+import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,4 +22,8 @@ public class ContactController {
     public String deleteContact(@PathVariable("id") int contactId){return contactService.deleteContact(contactId);}
     @PutMapping("/contact/{id}")
     public Contact updateContact(@PathVariable("id") int contactId,@RequestBody Contact contact){return contactService.updateContact(contactId,contact);}
+    @GetMapping("/contact/email/{email}")
+    public Contact fetchContactByEmail(@PathVariable("email") String email){
+        return contactService.fetchContactByEmail(email);
+    }
 }

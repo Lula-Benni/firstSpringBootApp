@@ -14,4 +14,5 @@ public interface ContactService {
     String deleteContact(int contactId);
 
     Contact updateContact(int contactId,Contact contact);
+    public Contact fetchContactByEmail(String emails);
 }

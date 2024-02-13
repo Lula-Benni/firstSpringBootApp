@@ -43,4 +43,8 @@ public class ContactServiceEmpL implements ContactService{
         }
         return contactRepository.save(contactDB);
     }
+    @Override
+    public Contact fetchContactByEmail(String emails){
+        return contactRepository.findContactByEmailsIgnoreCase(emails);
+    }
 }
