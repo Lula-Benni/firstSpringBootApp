@@ -190,7 +190,7 @@ public class ViewController {
             profile.setPassword_reset_token_expDate(LocalDateTime.now().plusMinutes(15));
             profileService.updateProfile(profile.getProfileId(),profile);
             log.info(profile.toString());
-            return "redirect:/register";
+            return "redirect:/forgot-password";
         }
         else{
             log.info("**************Not Found**********");
