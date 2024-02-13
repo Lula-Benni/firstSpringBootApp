@@ -170,4 +170,8 @@ public class ViewController {
         itemService.updateItem(id,item);
         return "redirect:/edit-item-"+id;
     }
+    @GetMapping("/forgot-password")
+    public String forgotPassword(Model model){
+        return "forgot-password";
+    }
 }
