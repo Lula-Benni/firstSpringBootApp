@@ -22,7 +22,13 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Slf4j
 @Controller
 public class ViewController {
@@ -173,5 +179,22 @@ public class ViewController {
     @GetMapping("/forgot-password")
     public String forgotPassword(Model model){
         return "forgot-password";
+    }
+    @PostMapping("/reset-password")
+    public String resetPassword(@RequestParam("emails") String _email, RedirectAttributes attributes, Model model){
+        Optional<Profile> profileOpt = profileService.fetchProfileByEmail(_email);
+        if (profileOpt.isPresent()){
+            Profile profile = profileService.fetchProfile(profileOpt.get().getProfileId());
+            String reset_token = UUID.randomUUID().toString();
+            profile.setPassword_reset_token(reset_token);
+            profile.setPassword_reset_token_expDate(LocalDateTime.now().plusMinutes(15));
+            profileService.updateProfile(profile.getProfileId(),profile);
+            log.info(profile.toString());
+            return "redirect:/register";
+        }
+        else{
+            log.info("**************Not Found**********");
+            return "redirect:/forgot-password";
+        }
     }
 }
