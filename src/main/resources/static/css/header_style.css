@@ -8,74 +8,69 @@
 header .h-container{
     background-color: black;
 }
-.navbar-row{
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 0px;
+header{
+    margin-bottom: 8rem;
 }
 .navbar-header ul{
     list-style: none;
 }
 .icon{
-    width: 70px;
-}
-.backBtn{
-    position: relative;
-    right: 60px;
-    background-color: black;
-    color: white;
-    border: none;
+    position: absolute;
+    width: 50px;
 }
 .nav-heading{
     font-size: 30px;
-    position: relative;
-    bottom: 50px;
-    left: 75px;
+    position: absolute;
+    left: 50px;
     color: white;
 }
 .nav-header{
-    margin-top: 20px;
+    display: flex;
+    position:absolute;
+    bottom: 78%;
 }
 .search{
     width: 334px;
-    padding: 10px 10px 10px 10px;
+    padding: 10px;
     border-radius: 200px;
     border: none;
 }
 .category{
     width: 130px;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 20px;
     border-radius: 200px;
     /*border: 3px solid #73AD21;
     padding: 1px;*/
 }
 .search_btn{
-    padding: 10px 10px 10px 10px;
+    padding: 10px;
     border-radius: 200px;
     border: none;
 }
 .search_btn:hover{
 }
 .search-bar{
-    margin-top: 15px;
+    position: absolute;
+    left: 35%;
 }
 .btn{
-    /*position: relative;
-    right: 111px;*/
-    padding: 10px 10px 10px 10px;
+    padding: 10px;
     border-radius: 200px;
     border: none;
-    margin-left: 40px;
-    background-color: black;
+    padding-right: 80%;
     color: white;
 }
+.btn:hover{
+    color: grey;
+}
 .btns{
-    position: relative;
-    right: 200px;
-    margin-top: 15px;
+    display: flex;
+    position: absolute;
+    left: 77%;
+    margin-top: 7px;
 }
 .nav-header{
-    position: relative;
+    position: absolute;
     left: 100px;
 }
 /* Dropdown container - needed to position the dropdown content */
