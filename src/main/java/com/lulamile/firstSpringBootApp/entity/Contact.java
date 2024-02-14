@@ -1,13 +1,13 @@
 package com.lulamile.firstSpringBootApp.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -21,5 +21,27 @@ public class Contact {
     private String cellNumber;
     //@OneToOne(mappedBy = "contact")
     //private Profile profile;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Contact contact)) return false;
+        return contactId == contact.contactId && Objects.equals(emails, contact.emails) && Objects.equals(cellNumber, contact.cellNumber);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contactId, emails, cellNumber);
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "contactId=" + contactId +
+                ", emails='" + emails + '\'' +
+                ", cellNumber='" + cellNumber + '\'' +
+                '}';
+    }
 }
 
