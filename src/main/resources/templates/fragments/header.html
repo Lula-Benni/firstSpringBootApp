@@ -6,9 +6,8 @@
 
 <header>
     <div class="h-container">
-        <div class="navbar-row">
+        <nav style="height: 10%;" class="navbar navbar-dark bg-black fixed-top">
             <div class="nav-header">
-                <!--<button class="backBtn" onclick="history.back()" sec:authorize="isAuthenticated()"><i class="fa-solid fa-angle-left"></i></button>-->
                 <a th:href="@{/home}" style="text-decoration: none;">
                     <img class="icon" src="images/icon.png" alt="icon">
                     <h4 class="nav-heading">SellUrItem</h4>
@@ -31,7 +30,7 @@
                 <button class="btn"><i class="fa-solid fa-bookmark"></i></button>
                 <button class="btn"><i class="fa-solid fa-comment"></i></button>
                 <div class="dropdown">
-                    <button class="btn"><i class="fa-solid fa-user"> <i class="fa fa-caret-down"></i></i></button>
+                    <button style="margin-top:8px;" class="btn"><i class="fa-solid fa-user"> <i class="fa fa-caret-down"></i></i></button>
                     <div class="dropdown-content">
                         <a th:href="@{/view-profile}">Go to Profile</a>
                         <a th:href="@{/view-my-items}">My Items</a>
@@ -40,7 +39,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </nav>
     </div>
 </header>
 </html>
