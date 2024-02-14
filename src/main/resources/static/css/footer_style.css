@@ -5,20 +5,23 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+footer{
+    margin-top: 6rem;
+}
 footer .f-container{
     background-color: black;
 }
 .row-items{
     display: flex;
     justify-content: space-between;
-    padding: 40px 100px;
+    padding: 10px 100px;
 }
 .column-items ul{
     list-style: none;
 }
 .column-items h4{
     color: white;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     font-size: 22px;
     position: relative;
     font-family: 'Ubuntu Mono', monospace;
