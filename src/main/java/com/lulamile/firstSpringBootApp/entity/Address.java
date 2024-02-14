@@ -26,7 +26,7 @@ public class Address {
     private String state;
     @Column(nullable = false)
     private String country;
-    @Column()
+    @Column(nullable = false)
     private String additionalDetails;
     @OneToMany(mappedBy = "address")
     private List<Profile> profiles;
