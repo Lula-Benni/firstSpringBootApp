@@ -78,11 +78,12 @@ public class ViewController {
     public ModelAndView addItem(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        Profile profile = profileService.fetchProfileByUserName(username);
-        Item item = new Item();
-        ItemDTO itemDto = new ItemDTO(item,profile);
+        Optional<Profile> profile = profileService.fetchProfileByUserName(username);
         ModelAndView mav = new ModelAndView("add-item");
-        mav.addObject("itemDto",itemDto);
+        if (profile.isPresent()){
+            Item item = new Item();
+            ItemDTO itemDto = new ItemDTO(item,profile.get());
+            mav.addObject("itemDto",itemDto);}
         return mav;
     }
     @PostMapping("/add-item")
@@ -90,9 +91,11 @@ public class ViewController {
         Item item = itemDto.getItem();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        Profile profile = profileService.fetchProfileByUserName(username);
-        item.setProfile(profile);
-        itemService.saveItem(item);
+        Optional<Profile> profile = profileService.fetchProfileByUserName(username);
+        if (profile.isPresent()){
+            item.setProfile(profile.get());
+            itemService.saveItem(item);
+        }
         return "redirect:/view-my-items";
     }
     @GetMapping("/home")
@@ -112,18 +115,20 @@ public class ViewController {
     }
     @GetMapping("/view-profile")
     public ModelAndView viewProfile() {
-        Profile profile;
+        Optional<Profile> profile;
         Contact contact;
         Address address;
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         profile = profileService.fetchProfileByUserName(username);
-        contact = contactService.fetchContactById(profile.getContact().getContactId());
-        address = profile.getAddress();
-        DTO dto = new DTO(profile, contact, address);
         ModelAndView mav = new ModelAndView("view-profile");
-        mav.addObject("dto", dto);
+        if(profile.isPresent()){
+            contact = contactService.fetchContactById(profile.get().getContact().getContactId());
+            address = profile.get().getAddress();
+            DTO dto = new DTO(profile.get(), contact, address);
+            mav.addObject("dto", dto);
+        }
         return mav;
     }
     @PostMapping("/view-profile/{id}/edit")
@@ -141,10 +146,11 @@ public class ViewController {
     public ModelAndView getProfileItems(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        Profile profile = profileService.fetchProfileByUserName(username);
-        List<Item> items = profile.getItems();
+        Optional<Profile> profile = profileService.fetchProfileByUserName(username);
         ModelAndView mav = new ModelAndView("view-my-items");
-        mav.addObject("items",items);
+        if (profile.isPresent()){
+            List<Item> items = profile.get().getItems();
+            mav.addObject("items",items);}
         return mav;
     }
     @GetMapping("/view-my-items/{id}/delete")
@@ -165,14 +171,16 @@ public class ViewController {
     }
     @GetMapping("/edit-item-{id}")
     public ModelAndView editItem(@PathVariable("id") int id){
-        Profile profile;
+        Optional<Profile> profile;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         profile = profileService.fetchProfileByUserName(username);
-        Item item = itemService.fetchItemById(id);
-        ItemDTO itemDTO = new ItemDTO(item,profile);
         ModelAndView mav = new ModelAndView("edit-item");
-        mav.addObject("itemDTO",itemDTO);
+        if (profile.isPresent()){
+            Item item = itemService.fetchItemById(id);
+            ItemDTO itemDTO = new ItemDTO(item,profile.get());
+            mav.addObject("itemDTO",itemDTO);
+        }
         return mav;
     }
     @PostMapping("/edit-item/{id}/edit")
