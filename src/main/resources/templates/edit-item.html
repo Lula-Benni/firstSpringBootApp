@@ -4,7 +4,7 @@
 <body>
 <header th:replace="~{fragments/header.html :: header}"></header>
 <div class="profile-container">
-    <div class="row-view">
+    <div class="row-view border-black rounded-0 shadow p-3 mb-5 bg-white rounded">
         <form th:action="@{/edit-item/{id}/edit(id=${itemDTO.item.itemId})}"
               th:object="${itemDTO}"
               method="post"
