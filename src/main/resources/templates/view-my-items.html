@@ -7,7 +7,7 @@
 <header th:replace="~{fragments/header.html :: header}"></header>
 <div class="home-container">
     <h2>This is my Items Page</h2>
-    <div class="card" style="width:250px; display: inline-block; margin: 45px 20px" th:each="item : ${items}">
+    <div class="card rounded-0 shadow p-3 mb-5 bg-white rounded" style="width:250px; display: inline-block; margin: 45px 20px" th:each="item : ${items}">
         <img class="card-img-top" src="images/avatar-user.png" alt="Card image">
         <div class="card-body">
             <h4 class="card-title" th:text="${item.itemName}">John Doe</h4>
