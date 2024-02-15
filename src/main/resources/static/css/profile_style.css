@@ -33,6 +33,10 @@
     position: absolute;
     left: 54.5%;
 }
+#additionalDetails{
+    width: 72%;
+    height: 10rem;
+}
 .edit-container{
     display: flex;
 }
