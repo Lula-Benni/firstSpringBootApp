@@ -1,6 +1,5 @@
 package com.lulamile.firstSpringBootApp.service;
 
-import com.lulamile.firstSpringBootApp.entity.Contact;
 import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.repository.ContactRepository;
 import com.lulamile.firstSpringBootApp.repository.ProfileRepository;
@@ -81,8 +80,8 @@ public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
         if (validate.test(profile.getItems())){
             profileDB.setItems(profile.getItems());
         }
-        if(validate.test(profile.getPassword_reset_token())){
-            profileDB.setPassword_reset_token(profile.getPassword_reset_token());
+        if(validate.test(profile.getPasswordResetToken())){
+            profileDB.setPasswordResetToken(profile.getPasswordResetToken());
         }
         if (validate.test(profile.getPassword_reset_token_expDate())){
             profileDB.setPassword_reset_token_expDate(profile.getPassword_reset_token_expDate());
@@ -116,6 +115,11 @@ public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
             System.out.println("Contact not found for email: "+emails);
             throw new EntityNotFoundException("Contact not found for email: "+emails);
         }*/
+    }
+
+    @Override
+    public Optional<Profile> fetchProfileByToken(String token) {
+        return profileRepository.findByPasswordResetToken(token);
     }
 
     @Override

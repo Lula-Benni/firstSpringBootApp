@@ -15,4 +15,5 @@ public interface ProfileService {
     public Profile updateProfile(int profileId, Profile profile);
     public Profile fetchProfileByUserName(String fullName);
     public Optional<Profile> fetchProfileByEmail(String emails);
+    public Optional<Profile> fetchProfileByToken(String token);
 }
