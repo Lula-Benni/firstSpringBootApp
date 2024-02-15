@@ -2,13 +2,13 @@ package com.lulamile.firstSpringBootApp.entity;
 
 import com.lulamile.firstSpringBootApp.utils.Category;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -26,4 +26,20 @@ public class Item {
     @JoinColumn(name="profile_Id",nullable = true)
     @ManyToOne
     private Profile profile;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemId, itemName, itemDescription, itemPrice, category);
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId=" + itemId +
+                ", itemName='" + itemName + '\'' +
+                ", itemDescription='" + itemDescription + '\'' +
+                ", itemPrice=" + itemPrice +
+                ", category=" + category +
+                '}';
+    }
 }
