@@ -4,7 +4,7 @@
 <body>
 <header th:replace="~{fragments/header.html :: header}"></header>
 <div class="profile-container">
-        <div class="row-view">
+        <div class="row-view border-black rounded-0 shadow p-3 mb-5 bg-white rounded">
                 <form th:action="@{/view-profile/{id}/edit(id=${dto.profile.profileId})}"
                       th:object="${dto}"
                       method="post"
@@ -76,6 +76,7 @@
                                 </div>
                                 <a class="change-password" style="cursor: pointer;">Change Password</a>
                         </div>
+                        <hr>
                         <!--<div class="submit">
                                 <BUTTON class="submit" type="submit" id="submit" name="submit">Submit</BUTTON>
                         </div>-->

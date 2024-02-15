@@ -5,30 +5,33 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+.profile-container{
+    display: flex;
+    justify-content: center;
+}
 .row-view{
+    border-style: solid;
+    border-color: black;
+    border-width: thin;
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 50%;
-    margin-left: 25%;
+    width: 450px;
 }
 .edit-fullName{
     position: absolute;
-    left: 72.7%;
+    left: 60.5%;
 }
 .edit-contacts{
     position: absolute;
-    left: 72.7%;
-    float: right;
+    left: 60.5%;
 }
 .edit-address{
     position: absolute;
-    left: 72.7%;
-    float: right;
+    left: 60.5%;
 }
 .change-password{
     position: absolute;
-    left: 67%;
-    float: right;
+    left: 54.5%;
 }
 .edit-container{
     display: flex;
