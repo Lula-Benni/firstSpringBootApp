@@ -1,15 +1,15 @@
 package com.lulamile.firstSpringBootApp.controller;
 
+import com.lulamile.firstSpringBootApp.service.*;
+import com.lulamile.firstSpringBootApp.utils.email.EmailDetails;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import com.lulamile.firstSpringBootApp.entity.Address;
 import com.lulamile.firstSpringBootApp.entity.Contact;
 import com.lulamile.firstSpringBootApp.entity.Item;
 import com.lulamile.firstSpringBootApp.entity.Profile;
-import com.lulamile.firstSpringBootApp.service.AddressService;
-import com.lulamile.firstSpringBootApp.service.ContactService;
-import com.lulamile.firstSpringBootApp.service.ItemService;
-import com.lulamile.firstSpringBootApp.service.ProfileService;
 import com.lulamile.firstSpringBootApp.utils.DTO;
 import com.lulamile.firstSpringBootApp.utils.ItemDTO;
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,6 +40,12 @@ public class ViewController {
     private ContactService contactService;
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private EmailService emailService;
+    @Value("${site.domain}")
+    private String site_domain;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @GetMapping("/login")
     public String login(Model model){
         return "login";
@@ -186,15 +192,45 @@ public class ViewController {
         if (profileOpt.isPresent()){
             Profile profile = profileService.fetchProfile(profileOpt.get().getProfileId());
             String reset_token = UUID.randomUUID().toString();
-            profile.setPassword_reset_token(reset_token);
+            profile.setPasswordResetToken(reset_token);
             profile.setPassword_reset_token_expDate(LocalDateTime.now().plusMinutes(15));
             profileService.updateProfile(profile.getProfileId(),profile);
-            log.info(profile.toString());
-            return "redirect:/forgot-password";
+            String resetMessage = "Here is your SellUrItem password reset  link: "+site_domain+"change-password?token="+reset_token;
+            EmailDetails emailDetails = new EmailDetails(profile.getContact().getEmails(),resetMessage, "Reset Your SellUrItem Password");
+            emailService.sendSimpleEmail(emailDetails);
         }
         else{
-            log.info("**************Not Found**********");
-            return "redirect:/forgot-password";
+            log.info("**************Could not send Email**********");
         }
+        return "redirect:/forgot-password";
+    }
+    @GetMapping("/change-password")
+    public String changePassword(@RequestParam("token") String token,RedirectAttributes redirectAttributes,Model model){
+        if(token.equals("")){
+            log.info("Error invalid token empty ");
+            return "redirect://forgot-password";
+        }
+        Optional<Profile> optionalProfile = profileService.fetchProfileByToken(token);
+        if(optionalProfile.isPresent()){
+            Profile profile = profileService.fetchProfile(optionalProfile.get().getProfileId());
+            LocalDateTime now =LocalDateTime.now();
+            if(now.isAfter(optionalProfile.get().getPassword_reset_token_expDate())){
+                log.info("*******************Error: expired token**********************");
+                return "redirect:/forgot-password";
+            }
+            model.addAttribute("profile",profile);
+            return "change-password";
+        }
+        log.info("*******************Error: Invalid token**********************");
+        return "redirect:/forgot-password";
+    }
+    @PostMapping("/change-password")
+    public String changePasswordPost(@ModelAttribute("profile") Profile profile, RedirectAttributes attributes){
+        Profile profileById = profileService.fetchProfile(profile.getProfileId());
+        profileById.setPassword(passwordEncoder.encode(profile.getPassword()));
+        profileById.setPasswordResetToken("");
+        profileService.updateProfile(profile.getProfileId(),profileById);
+        log.info("****************************password from: "+profileById.getUserName()+" updated***********************************");
+        return "redirect:/login";
     }
 }
