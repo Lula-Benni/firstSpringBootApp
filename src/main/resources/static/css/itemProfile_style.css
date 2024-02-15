@@ -1,15 +1,29 @@
 .popup {
-			display: none;
-			position: fixed;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			background-color: white;
-			border: 1px solid black;
-			padding: 20px;
-			z-index: 1;
-		}
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    z-index: 1;
+}
 
-		.popup:target {
-			display: block;
-		}
+.popup:target {
+    display: block;
+}
+.btn-secondary{
+    border-radius: 20px;
+    height: 40px;
+    width: 100px;
+    background-color: blue;
+    color: white;
+}
+.btn-danger{
+    border-radius: 20px;
+    height: 40px;
+    width: 100px;
+    background-color: red;
+    color: white;
+}
