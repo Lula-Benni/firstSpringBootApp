@@ -59,7 +59,18 @@
             </fieldset>
 
             <h6>Password</h6>
-            <input class="input" type="password" th:field="${dto.profile.password}" id="password" name="reg-password" placeholder="Enter your Password">
+            <input class="input" type="password" th:field="${dto.profile.password}" id="password" name="reg-password" placeholder="Enter your Password" required>
+            <input style="margin-top: 1rem;" class="input" type="password" id="confirm-password" name="confirm-password" oninput="check(this)" placeholder="Confirm Password" required>
+            <script>
+                function check(input){
+                    if (input.value != document.getElementById('password').value) {
+                        input.setCustomValidity('Passwords must match.');
+                    }
+                    else{
+                        input.setCustomValidity('');
+                    }
+                }
+            </script>
 
             <BUTTON class="register-btn" type="submit" id="submit" name="submit">Register</BUTTON><br>
             <hr>
