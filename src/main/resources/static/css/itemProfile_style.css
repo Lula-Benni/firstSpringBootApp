@@ -17,7 +17,7 @@
     border-radius: 20px;
     height: 40px;
     width: 100px;
-    background-color: blue;
+    background-color: hwb(207 25% 31%);
     color: white;
 }
 .btn-danger{
@@ -26,4 +26,10 @@
     width: 100px;
     background-color: red;
     color: white;
+}
+.btn-secondary:hover{
+    opacity: 0.7;
+}
+.btn-danger:hover{
+    opacity: 0.7;
 }
