@@ -203,7 +203,7 @@ public class ViewController {
             profile.setPasswordResetToken(reset_token);
             profile.setPassword_reset_token_expDate(LocalDateTime.now().plusMinutes(15));
             profileService.updateProfile(profile.getProfileId(),profile);
-            String resetMessage = "Here is your SellUrItem password reset  link: "+site_domain+"change-password?token="+reset_token;
+            String resetMessage = "Here is your SellUrItem password reset  link: "+site_domain+"change-password?token="+reset_token+" This link will expire after 15 minutes.";
             EmailDetails emailDetails = new EmailDetails(profile.getContact().getEmails(),resetMessage, "Reset Your SellUrItem Password");
             emailService.sendSimpleEmail(emailDetails);
         }
