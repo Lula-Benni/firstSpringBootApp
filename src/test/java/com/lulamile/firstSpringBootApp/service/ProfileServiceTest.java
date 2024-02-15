@@ -47,12 +47,16 @@ class ProfileServiceTest {
                 .profileId(1)
                 .gender(Gender.MALE)
                 .contact(contact)
+                .passwordResetToken("13rfvtr56821445")
                 .address(address)
                 .fullName("Lulamile Plati")
                 .userName("lula99")
-                .passwordResetToken("1@3rfvtr56821445")
                 .build();
         Mockito.when(profileRepository.findByEmailsIgnoreCase("lulabenni45@gmail.com"))
+                .thenReturn(Optional.ofNullable(profile));
+        Mockito.when(profileRepository.findOneByUserNameIgnoreCase("lula99"))
+                .thenReturn(Optional.ofNullable(profile));
+        Mockito.when(profileRepository.findByPasswordResetToken("13rfvtr56821445"))
                 .thenReturn(Optional.ofNullable(profile));
     }
 
@@ -77,6 +81,18 @@ class ProfileServiceTest {
         }
         else{
             System.out.println("Profile with email: "+email+" does not exist");
+        }
+    }
+    @Test
+    void fetchProfileByToken() {
+        String token = "13rfvtr56821445";
+        Optional<Profile> found = profileService.fetchProfileByToken(token);
+        if (found.isPresent()) {
+            Profile profile = found.get();
+            assertEquals(token, profile.getPasswordResetToken());
+        }
+        else{
+            System.out.println("Token does not exist or is expired ");
         }
     }
 }
