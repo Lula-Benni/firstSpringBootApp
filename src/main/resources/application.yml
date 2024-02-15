@@ -18,3 +18,26 @@ spring:
       web:
         exposure:
           include: "*"
+
+#Email settings
+  config:
+    import: 'optional:secret.yml'
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    smtp:
+      ssl:
+        trust: smtp.gmail.com
+mail:
+  transport:
+    protocol: smtp
+
+# Application settings
+site:
+  domain: http://localhost:8182/
