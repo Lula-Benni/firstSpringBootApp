@@ -8,7 +8,7 @@
               th:object="${itemDto}"
               method="post"
         >
-            <div class="card" style="width: 350px; display: flex; margin: 45px 20px; margin-left: 40%; align-items: center; border:none; border-color: black; border-radius:10px; ">
+            <div class="card border-black rounded-0 shadow p-3 mb-5 bg-white rounded" style="width: 350px; display: flex; margin: 45px 20px; margin-left: 40%; align-items: center; border-color: black; border-radius:10px; ">
                 <div class="card-body">
                     <h5>Item Name</h5>
                     <input class="input" type="text" th:field="${itemDto.item.itemName}" id="itemName" name="itemName" placeholder="Enter Item Name">
