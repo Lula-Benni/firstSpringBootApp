@@ -24,6 +24,7 @@ class ProfileServiceTest {
     private ProfileService profileService;
     @MockBean
     private ProfileRepository profileRepository;
+
     @BeforeEach
     void setUp() {
         Contact contact = Contact.builder()
@@ -41,7 +42,7 @@ class ProfileServiceTest {
                 .build();
 
         Profile profile = Profile.builder()
-                .dateOfBirth(new Date(1999- 3 -29))
+                .dateOfBirth(new Date(1999 - 3 - 29))
                 .password("12345678")
                 .profileId(1)
                 .gender(Gender.MALE)
@@ -53,17 +54,29 @@ class ProfileServiceTest {
                 .build();
         Mockito.when(profileRepository.findByEmailsIgnoreCase("lulabenni45@gmail.com"))
                 .thenReturn(Optional.ofNullable(profile));
-            }
+    }
+
     @Test
     void fetchProfileByUserName() {
         String userName = "lula99";
         Optional<Profile> found = profileService.fetchProfileByUserName(userName);
-        if(found.isPresent()){
+        if (found.isPresent()) {
             Profile profile = found.get();
-            assertEquals(userName,profile.getUserName());
+            assertEquals(userName, profile.getUserName());
+        } else {
+            System.out.println("Profile with username: " + userName + " does not exist");
+        }
+    }
+    @Test
+    void fetchProfileByEmail() {
+        String email = "lulabenni45@gmail.com";
+        Optional<Profile> found = profileService.fetchProfileByEmail(email);
+        if (found.isPresent()) {
+            Profile profile = found.get();
+            assertEquals(email, profile.getContact().getEmails());
         }
         else{
-            System.out.println("Profile with username: "+userName+" does not exist");
+            System.out.println("Profile with email: "+email+" does not exist");
         }
     }
 }
