@@ -34,3 +34,4 @@ build/
 
 ### Ignore a specific file ###
 secret.yml
+qondana.yaml
