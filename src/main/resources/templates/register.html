@@ -8,8 +8,8 @@
       th:object="${dto}"
       method="post"
         >
-    <div class="card" style="width: 350px; display: flex; margin: 45px 20px; margin-left: 40%; align-items: center; border:none; border-color: black; border-radius:10px; ">
-        <div class="card-body" style="width: 350px; border:none;">
+    <div class="card border-black rounded-0 shadow p-3 mb-5 bg-white rounded" style="width: 350px; display: flex; margin: 45px 20px; margin-left: 40%; align-items: center; border-color: black; ">
+        <div class="card-body" style="width: 350px; border-color: black;">
             <h5>Full Name</h5>
             <input class="input" type="text" th:field="${dto.profile.fullName}" id="fullName" name="fullName" placeholder="Enter your Full Name">
 
