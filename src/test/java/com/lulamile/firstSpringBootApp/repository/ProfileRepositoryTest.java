@@ -45,7 +45,6 @@ class ProfileRepositoryTest {
                 .fullName("Lulamile Plati")
                 .userName("lula99")
                 .passwordResetToken("1@3rfvtr56821445")
-                .passwordResetToken("12dfdghnnyhkmrknogj94")
                 .build();
         entityManager.persist(profile);
     }
@@ -78,7 +77,7 @@ class ProfileRepositoryTest {
 
     @Test
     void findByPasswordResetToken() {
-        String token = "12dfdghnnyhkmrknogj94";
+        String token = "1@3rfvtr56821445";
         Optional<Profile> found = profileRepository.findByPasswordResetToken(token);
         if(found.isPresent()){
             Profile profile = found.get();
