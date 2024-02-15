@@ -90,8 +90,8 @@ public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
     }
 
     @Override
-    public Profile fetchProfileByUserName(String userName) {
-        return profileRepository.findByUserNameIgnoreCase(userName);
+    public Optional<Profile> fetchProfileByUserName(String userName) {
+        return profileRepository.findOneByUserNameIgnoreCase(userName);
     }
 
     @Override

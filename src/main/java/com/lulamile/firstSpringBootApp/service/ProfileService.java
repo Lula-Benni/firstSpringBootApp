@@ -13,7 +13,7 @@ public interface ProfileService {
     public Profile fetchProfile(int profileId);
     public String deleteProfile(int profileId);
     public Profile updateProfile(int profileId, Profile profile);
-    public Profile fetchProfileByUserName(String fullName);
+    public Optional<Profile> fetchProfileByUserName(String fullName);
     public Optional<Profile> fetchProfileByEmail(String emails);
     public Optional<Profile> fetchProfileByToken(String token);
 }

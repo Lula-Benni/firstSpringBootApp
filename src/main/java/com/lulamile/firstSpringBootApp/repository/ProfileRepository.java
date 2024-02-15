@@ -19,8 +19,6 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
             nativeQuery=true)
     public void updatePassWordByEmail(String password,String email);
     Optional<Profile> findOneByUserNameIgnoreCase(String userName);
-
-    Profile findByUserNameIgnoreCase(String userName);
     @Query("SELECT p FROM Profile as p inner join p.contact c join p.address WHERE c.emails=:emails")
     Optional<Profile> findByEmailsIgnoreCase(@Param("emails") String emails);
     Optional<Profile> findByPasswordResetToken(String token);

@@ -43,7 +43,7 @@ public class ProfileController {
         return profileService.updateProfile(profileId, profile);
     }
     @GetMapping("/profile/username/{username}")
-    public Profile fetchProfileByUserName(@PathVariable("username") String userName){
+    public Optional<Profile> fetchProfileByUserName(@PathVariable("username") String userName){
         return profileService.fetchProfileByUserName(userName);
     }
     @GetMapping("/by-email")
