@@ -5,6 +5,11 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+.additional-address{
+    width: 94%;
+    height: 10rem;
+    margin-bottom: 0.6rem;
+}
 .register-btn{
     width: 50%;
     margin-top: 8%;
