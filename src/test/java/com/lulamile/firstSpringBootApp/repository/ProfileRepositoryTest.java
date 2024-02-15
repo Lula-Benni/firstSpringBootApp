@@ -64,6 +64,15 @@ class ProfileRepositoryTest {
 
     @Test
     void findByEmailsIgnoreCase() {
+        String email = "lulabenni45@gmail.com";
+        Optional<Profile> found = profileRepository.findByEmailsIgnoreCase(email);
+        if(found.isPresent()){
+            Profile profile = found.get();
+            assertEquals(email,profile.getContact().getEmails());
+        }
+        else{
+            System.out.println("Profile with email: "+email+" does not exist");
+        }
     }
 
     @Test
