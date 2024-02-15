@@ -16,7 +16,7 @@
     width: 12px;
     height: 12px;
     position: absolute;
-    top: 80%;
+    top: 77%;
     border-color: black;
 }
 .form-check-label{
@@ -29,7 +29,7 @@
 .register-label{
     font-size: 13px;
     position: absolute;
-    top: 86%;
+    top: 83%;
     left: 57%
 }
 .account-label{
