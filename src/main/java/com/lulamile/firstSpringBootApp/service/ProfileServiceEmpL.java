@@ -97,24 +97,12 @@ public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
     @Override
     public Optional<Profile> fetchProfileByEmail(String emails) {
         Optional<Profile> optionalProfile = profileRepository.findByEmailsIgnoreCase(emails);
-        System.out.println("**************"+optionalProfile.isEmpty()+"**************");
-
         if(optionalProfile.isPresent()){
             return optionalProfile;
         }
         else{
-            System.out.println("Profile not found for email: "+emails);
-            throw new EntityNotFoundException("Profile not found for email: "+emails);
+            throw new EntityNotFoundException("Profile not found for this email");
         }
-        //return profileRepository.findByEmailsIgnoreCase(emails);
-        /*Optional<Contact> contact = contactRepository.findContactByEmailsIgnoreCase(emails);
-        if(contact.isPresent()){
-            return profileRepository.findByContactEmailsIgnoreCase(emails);
-        }
-        else{
-            System.out.println("Contact not found for email: "+emails);
-            throw new EntityNotFoundException("Contact not found for email: "+emails);
-        }*/
     }
 
     @Override
