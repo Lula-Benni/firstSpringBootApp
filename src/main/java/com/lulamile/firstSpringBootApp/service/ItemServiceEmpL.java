@@ -3,9 +3,11 @@ package com.lulamile.firstSpringBootApp.service;
 import com.lulamile.firstSpringBootApp.entity.Item;
 import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.repository.ItemRepository;
+import com.lulamile.firstSpringBootApp.utils.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -51,5 +53,9 @@ public class ItemServiceEmpL implements ItemService {
             itemDB.setProfile(item.getProfile());
         }
         return itemRepository.save(itemDB);
+    }
+    @Override
+    public List<Item> fetchItemsByCategory(Category category) {
+        return itemRepository.findItemsByCategory(category);
     }
 }

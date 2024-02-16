@@ -2,6 +2,7 @@ package com.lulamile.firstSpringBootApp.service;
 
 import com.lulamile.firstSpringBootApp.entity.Item;
 import com.lulamile.firstSpringBootApp.entity.Profile;
+import com.lulamile.firstSpringBootApp.utils.Category;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface ItemService {
     String deleteItem(int itemId);
 
     Item updateItem(int itemId, Item item);
+    List<Item> fetchItemsByCategory(Category category);
 }
