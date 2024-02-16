@@ -72,7 +72,6 @@ header{
 }
 .nav-header{
     position: absolute;
-    left: 100px;
 }
 /* Dropdown container - needed to position the dropdown content */
 .dropdown {
