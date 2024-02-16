@@ -5,9 +5,6 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-header .h-container{
-    background-color: black;
-}
 header{
     margin-bottom: 8rem;
 }
@@ -108,5 +105,27 @@ header{
     header .search-bar{
         flex-direction: row;
         padding: 20px 30px;
+    }
+}
+@media screen and (max-width: 1010px){
+    header .nav-header{
+            left: 1px;
+        }
+    header .nav-heading{
+        left: 43px;
+    }
+    header .icon{
+        left:1px;
+    }
+    header .search-bar{
+        top: 18%;
+        left: 25%;
+    }
+    header .btns{
+        left: 82%;
+        bottom: 40%;
+    }
+    header .btn{
+        padding-left: 3px;
     }
 }
