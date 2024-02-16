@@ -104,7 +104,13 @@ header{
 .dropdown:hover .dropdown-content {
   display: block;
 }
-@media (max-width: 600px){
+@media screen and (max-width: 1410px){
+    .dropdown-content {
+      right: 10%;
+    }
+}
+
+@media screen and (max-width: 600px){
     header .search-bar{
         flex-direction: row;
         padding: 20px 30px;
