@@ -6,6 +6,7 @@ import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.utils.Gender;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -65,6 +66,7 @@ class ProfileRepositoryTest {
         }
     }
     @Test
+    @DisplayName("Username not valid")
     void inputIsNotValidForUsername() {
         String invalidInput = "jdfghjjkugtf";
         Optional<Profile> notFound = profileRepository.findOneByUserNameIgnoreCase(invalidInput);
@@ -80,6 +82,7 @@ class ProfileRepositoryTest {
         }
     }
     @Test
+    @DisplayName("Email is not valid")
     void inputIsNotValidForEmail() {
         String invalidInput = "jdfghjjkugtf";
         Optional<Profile> notFound = profileRepository.findByEmailsIgnoreCase(invalidInput);
@@ -95,6 +98,7 @@ class ProfileRepositoryTest {
         }
     }
     @Test
+    @DisplayName("Token is not valid")
     void inputIsNotValidForToken() {
         String invalidInput = "jdfghjjkugtf";
         Optional<Profile> notFound = profileRepository.findByPasswordResetToken(invalidInput);
