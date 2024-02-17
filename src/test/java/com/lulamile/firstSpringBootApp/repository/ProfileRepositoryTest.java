@@ -4,6 +4,7 @@ import com.lulamile.firstSpringBootApp.entity.Address;
 import com.lulamile.firstSpringBootApp.entity.Contact;
 import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.utils.Gender;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ class ProfileRepositoryTest {
     @Autowired
     private ProfileRepository profileRepository;
     @Autowired
+    private ContactRepository contactRepository;
+    @Autowired
+    private AddressRepository addressRepository;
+    @Autowired
     private TestEntityManager entityManager;
     @BeforeEach
     void setUp() {
@@ -27,15 +32,16 @@ class ProfileRepositoryTest {
                 .cellNumber("0768264985")
                 .emails("lulabenni45@gmail.com")
                 .build();
-        entityManager.persist(contact);
+        contactRepository.save(contact);
         Address address = Address.builder()
                 .state("Western Cape")
                 .city("Cape Town")
                 .street("Hodi rd")
                 .country("South Africa")
                 .postalCode("7750")
+                .additionalDetails("ygviuh")
                 .build();
-        entityManager.persist(address);
+        addressRepository.save(address);
         Profile profile = Profile.builder()
                 .dateOfBirth(new Date(1999- 3 -29))
                 .password("12345678")
@@ -46,9 +52,9 @@ class ProfileRepositoryTest {
                 .userName("lula99")
                 .passwordResetToken("1@3rfvtr56821445")
                 .build();
-        entityManager.persist(profile);
-    }
 
+        profileRepository.save(profile);
+    }
     @Test
     void findOneByUserNameIgnoreCase() {
         String userName = "lula99";
@@ -57,11 +63,7 @@ class ProfileRepositoryTest {
             Profile profile = found.get();
             assertEquals(userName,profile.getUserName());
         }
-        else{
-            System.out.println("Profile with username: "+userName+" does not exist");
-        }
     }
-
     @Test
     void findByEmailsIgnoreCase() {
         String email = "lulabenni45@gmail.com";
@@ -70,11 +72,7 @@ class ProfileRepositoryTest {
             Profile profile = found.get();
             assertEquals(email,profile.getContact().getEmails());
         }
-        else{
-            System.out.println("Profile with email: "+email+" does not exist");
-        }
     }
-
     @Test
     void findByPasswordResetToken() {
         String token = "1@3rfvtr56821445";
@@ -83,8 +81,12 @@ class ProfileRepositoryTest {
             Profile profile = found.get();
             assertEquals(token,profile.getPasswordResetToken());
         }
-        else{
-            System.out.println("Token does not exist");
-        }
     }
+    @Test
+    void inputIsNotValid() {
+        String invalidInput = "jdfghjjkugtf";
+        Optional<Profile> notFound = profileRepository.findByPasswordResetToken(invalidInput);
+        assertFalse(notFound.isPresent());
+    }
+
 }
