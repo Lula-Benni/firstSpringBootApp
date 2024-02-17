@@ -4,6 +4,8 @@ import com.lulamile.firstSpringBootApp.entity.Item;
 import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.repository.ItemRepository;
 import com.lulamile.firstSpringBootApp.utils.Category;
+import com.sun.jdi.request.ExceptionRequest;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +58,10 @@ public class ItemServiceEmpL implements ItemService {
     }
     @Override
     public List<Item> fetchItemsByCategory(Category category) {
-        return itemRepository.findItemsByCategory(category);
+        List<Item> items = itemRepository.findItemsByCategory(category);
+        if (items.isEmpty()){
+            throw new EntityNotFoundException("No item found for that category");
+        }
+        return items;
     }
 }
