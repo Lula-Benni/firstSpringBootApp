@@ -65,6 +65,12 @@ class ProfileRepositoryTest {
         }
     }
     @Test
+    void inputIsNotValidForUsername() {
+        String invalidInput = "jdfghjjkugtf";
+        Optional<Profile> notFound = profileRepository.findOneByUserNameIgnoreCase(invalidInput);
+        assertFalse(notFound.isPresent());
+    }
+    @Test
     void findByEmailsIgnoreCase() {
         String email = "lulabenni45@gmail.com";
         Optional<Profile> found = profileRepository.findByEmailsIgnoreCase(email);
@@ -72,6 +78,12 @@ class ProfileRepositoryTest {
             Profile profile = found.get();
             assertEquals(email,profile.getContact().getEmails());
         }
+    }
+    @Test
+    void inputIsNotValidForEmail() {
+        String invalidInput = "jdfghjjkugtf";
+        Optional<Profile> notFound = profileRepository.findByEmailsIgnoreCase(invalidInput);
+        assertFalse(notFound.isPresent());
     }
     @Test
     void findByPasswordResetToken() {
@@ -83,10 +95,9 @@ class ProfileRepositoryTest {
         }
     }
     @Test
-    void inputIsNotValid() {
+    void inputIsNotValidForToken() {
         String invalidInput = "jdfghjjkugtf";
         Optional<Profile> notFound = profileRepository.findByPasswordResetToken(invalidInput);
         assertFalse(notFound.isPresent());
     }
-
 }
