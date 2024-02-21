@@ -4,6 +4,7 @@ import com.lulamile.firstSpringBootApp.entity.Item;
 import com.lulamile.firstSpringBootApp.utils.Category;
 import jakarta.persistence.EntityNotFoundException;
 import org.assertj.core.util.Arrays;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,6 +50,10 @@ class ItemRepositoryTest {
         entityManager.persist(item);
         entityManager.persist(itemTwo);
         entityManager.persist(itemThree);
+    }
+    @AfterEach
+    void tearDown() {
+        entityManager.clear();
     }
     @Test
     @DisplayName("Filter Items by category")

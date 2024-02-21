@@ -5,6 +5,7 @@ import com.lulamile.firstSpringBootApp.entity.Contact;
 import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.utils.Gender;
 import jakarta.persistence.EntityNotFoundException;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,6 +52,10 @@ class ProfileRepositoryTest {
                 .build();
 
         entityManager.persist(profile);
+    }
+    @AfterEach
+    void tearDown() {
+        entityManager.clear();
     }
     @Test
     void findOneByUserNameIgnoreCase() {

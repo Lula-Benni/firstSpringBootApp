@@ -1,6 +1,7 @@
 package com.lulamile.firstSpringBootApp.repository;
 
 import com.lulamile.firstSpringBootApp.entity.Contact;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,10 @@ class ContactRepositoryTest {
                 .cellNumber("0768264985")
                 .build();
         entityManager.persist(contact);
+    }
+    @AfterEach
+    void tearDown() {
+        entityManager.clear();
     }
     @Test
     @DisplayName("Get Profile using valid Email")
