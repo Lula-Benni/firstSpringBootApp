@@ -22,6 +22,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItemRepositoryTest {
     @Autowired
     private ItemRepository itemRepository;
+    @Autowired
+    private TestEntityManager entityManager;
     @BeforeEach
     void setUp() {
         Item item = Item.builder()
@@ -44,9 +46,9 @@ class ItemRepositoryTest {
                 .category(Category.BOOKS)
                 .itemDescription("still new")
                 .build();
-        itemRepository.save(item);
-        itemRepository.save(itemTwo);
-        itemRepository.save(itemThree);
+        entityManager.persist(item);
+        entityManager.persist(itemTwo);
+        entityManager.persist(itemThree);
     }
     @Test
     @DisplayName("Filter Items by category")

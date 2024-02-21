@@ -22,10 +22,6 @@ class ProfileRepositoryTest {
     @Autowired
     private ProfileRepository profileRepository;
     @Autowired
-    private ContactRepository contactRepository;
-    @Autowired
-    private AddressRepository addressRepository;
-    @Autowired
     private TestEntityManager entityManager;
     @BeforeEach
     void setUp() {
@@ -33,7 +29,7 @@ class ProfileRepositoryTest {
                 .cellNumber("0768264985")
                 .emails("lulabenni45@gmail.com")
                 .build();
-        contactRepository.save(contact);
+        entityManager.persist(contact);
         Address address = Address.builder()
                 .state("Western Cape")
                 .city("Cape Town")
@@ -42,7 +38,7 @@ class ProfileRepositoryTest {
                 .postalCode("7750")
                 .additionalDetails("ygviuh")
                 .build();
-        addressRepository.save(address);
+        entityManager.persist(address);
         Profile profile = Profile.builder()
                 .dateOfBirth(new Date(1999- 3 -29))
                 .password("12345678")
@@ -54,7 +50,7 @@ class ProfileRepositoryTest {
                 .passwordResetToken("1@3rfvtr56821445")
                 .build();
 
-        profileRepository.save(profile);
+        entityManager.persist(profile);
     }
     @Test
     void findOneByUserNameIgnoreCase() {

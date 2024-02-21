@@ -13,16 +13,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class ContactRepositoryTest {
     @Autowired
     private ContactRepository contactRepository;
+    @Autowired
+    private TestEntityManager entityManager;
     @BeforeEach
     void setUp(){
         Contact contact = Contact.builder()
                 .emails("lulabenni45@gmail.com")
                 .cellNumber("0768264985")
                 .build();
-        contactRepository.save(contact);
+        entityManager.persist(contact);
     }
     @Test
-    @DisplayName("Get Profile with using valid Email")
+    @DisplayName("Get Profile using valid Email")
     public void findContactByEmailsIgnoreCase() {
         String email = "lulabenni45@gmail.com";
         Contact found = contactRepository.findContactByEmailsIgnoreCase(email);
