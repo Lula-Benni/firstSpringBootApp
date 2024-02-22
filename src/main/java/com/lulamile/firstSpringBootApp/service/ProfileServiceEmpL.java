@@ -120,7 +120,7 @@ public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
             return optionalProfile;
         }
         else{
-            throw new EntityNotFoundException("Profile not found for this Token");
+            throw new EntityNotFoundException("Token does not exist or is expired");
         }
     }
 
