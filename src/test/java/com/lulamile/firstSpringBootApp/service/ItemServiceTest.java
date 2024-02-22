@@ -25,15 +25,12 @@ class ItemServiceTest {
     @EnumSource(names = {"BOOKS","CELLPHONE","COMPUTERS"})
     void fetchItemsByCategory(Category category) {
         Mockito.when(itemRepository.findItemsByCategory(category)).thenReturn(getItems(category));
-        List<Item> found = itemService.fetchItemsByCategory(category);
-        if(found.isEmpty())
-        {
-            assertThrows(EntityNotFoundException.class,()-> {itemService.fetchItemsByCategory(category);});
-            //assertEquals("No item found for that category",errorMessage);
+        if(getItems(category).isEmpty()){
+            Exception exception = assertThrows(EntityNotFoundException.class, () -> itemService.fetchItemsByCategory(category),"No item found for that category");
+            assertEquals("No item found for that category", exception.getMessage());
         }else{
-            System.out.println("***inside***"+found.isEmpty());
-            assertTrue(true);
-        }
+        List<Item> found = itemService.fetchItemsByCategory(category);
+        assertFalse(found.isEmpty());}
     }
     private  List<Item> getItems(Category category){
         return  new ArrayList<>(Arrays.asList(
