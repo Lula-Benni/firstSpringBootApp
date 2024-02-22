@@ -96,17 +96,20 @@ class ProfileServiceTest {
     private Stream<String> getTestCasesForFetchProfileByEmail(){
         return  Stream.of("lulabenni45@gmail.com","lu01@lu.com","lula",null," ");
     }
-    @Test
-    @Disabled
-    void fetchProfileByToken() {
-        String token = "13rfvtr56821445";
-        Optional<Profile> found = profileService.fetchProfileByToken(token);
-        if (found.isPresent()) {
+    @ParameterizedTest
+    @MethodSource("getTestCasesForFetchProfileByToken")
+    void fetchProfileByToken(String token) {
+        if (profileRepository.findByPasswordResetToken(token).isPresent()) {
+            Optional<Profile> found = profileService.fetchProfileByToken(token);
             Profile profile = found.get();
             assertEquals(token, profile.getPasswordResetToken());
         }
         else{
-            System.out.println("Token does not exist or is expired ");
+            Exception exception = assertThrows(EntityNotFoundException.class,()->profileService.fetchProfileByToken(token));
+            assertEquals("Token does not exist or is expired",exception.getMessage());
         }
+    }
+    private Stream<String> getTestCasesForFetchProfileByToken(){
+        return Stream.of("13rfvtr56821445","vsti95fm,b@fwr32","","",null);
     }
 }
