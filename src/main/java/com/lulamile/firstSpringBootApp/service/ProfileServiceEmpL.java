@@ -91,7 +91,13 @@ public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
 
     @Override
     public Optional<Profile> fetchProfileByUserName(String userName) {
-        return profileRepository.findOneByUserNameIgnoreCase(userName);
+        Optional<Profile> optionalProfile = profileRepository.findOneByUserNameIgnoreCase(userName);
+        if(optionalProfile.isPresent()){
+            return optionalProfile;
+        }
+        else{
+            throw new EntityNotFoundException("Profile not found for UserName");
+        }
     }
 
     @Override
@@ -108,7 +114,14 @@ public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
 
     @Override
     public Optional<Profile> fetchProfileByToken(String token) {
-        return profileRepository.findByPasswordResetToken(token);
+        Optional<Profile> optionalProfile = profileRepository.findByPasswordResetToken(token);
+
+        if(optionalProfile.isPresent()){
+            return optionalProfile;
+        }
+        else{
+            throw new EntityNotFoundException("Profile not found for this Token");
+        }
     }
 
     @Override
