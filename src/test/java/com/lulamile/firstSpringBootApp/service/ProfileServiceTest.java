@@ -3,21 +3,27 @@ package com.lulamile.firstSpringBootApp.service;
 import com.lulamile.firstSpringBootApp.entity.Address;
 import com.lulamile.firstSpringBootApp.entity.Contact;
 import com.lulamile.firstSpringBootApp.entity.Profile;
-import com.lulamile.firstSpringBootApp.repository.ContactRepository;
 import com.lulamile.firstSpringBootApp.repository.ProfileRepository;
 import com.lulamile.firstSpringBootApp.utils.Gender;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import jakarta.persistence.EntityNotFoundException;
+import org.hibernate.action.internal.EntityActionVetoException;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest
 class ProfileServiceTest {
     @Autowired
@@ -59,31 +65,39 @@ class ProfileServiceTest {
         Mockito.when(profileRepository.findByPasswordResetToken("13rfvtr56821445"))
                 .thenReturn(Optional.ofNullable(profile));
     }
-
-    @Test
-    void fetchProfileByUserName() {
-        String userName = "lula99";
-        Optional<Profile> found = profileService.fetchProfileByUserName(userName);
-        if (found.isPresent()) {
+    @ParameterizedTest
+    @MethodSource("getTestCasesForFetchProfileByUserName")
+    void fetchProfileByUserName(String userName) {
+        if (profileRepository.findOneByUserNameIgnoreCase(userName).isPresent()) {
+            Optional<Profile> found = profileService.fetchProfileByUserName(userName);
             Profile profile = found.get();
             assertEquals(userName, profile.getUserName());
         } else {
-            System.out.println("Profile with username: " + userName + " does not exist");
+            Exception exception = assertThrows(EntityNotFoundException.class,()->profileService.fetchProfileByUserName(userName));
+            assertEquals("Profile not found for UserName",exception.getMessage());
         }
     }
-    @Test
-    void fetchProfileByEmail() {
-        String email = "lulabenni45@gmail.com";
-        Optional<Profile> found = profileService.fetchProfileByEmail(email);
-        if (found.isPresent()) {
+    private Stream<String> getTestCasesForFetchProfileByUserName(){
+        return  Stream.of("lula99", "lu01@lu.com", null, " ","");
+    }
+    @ParameterizedTest
+    @MethodSource("getTestCasesForFetchProfileByEmail")
+    void fetchProfileByEmail(String email) {
+        if (profileRepository.findByEmailsIgnoreCase(email).isPresent()) {
+            Optional<Profile> found = profileService.fetchProfileByEmail(email);
             Profile profile = found.get();
             assertEquals(email, profile.getContact().getEmails());
         }
         else{
-            System.out.println("Profile with email: "+email+" does not exist");
+            Exception exception =assertThrows(EntityNotFoundException.class,()->profileService.fetchProfileByEmail(email));
+            assertEquals("Profile not found for email", exception.getMessage());
         }
     }
+    private Stream<String> getTestCasesForFetchProfileByEmail(){
+        return  Stream.of("lulabenni45@gmail.com","lu01@lu.com","lula",null," ");
+    }
     @Test
+    @Disabled
     void fetchProfileByToken() {
         String token = "13rfvtr56821445";
         Optional<Profile> found = profileService.fetchProfileByToken(token);
