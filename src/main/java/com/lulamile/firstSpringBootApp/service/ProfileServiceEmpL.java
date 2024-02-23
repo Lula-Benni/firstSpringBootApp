@@ -91,12 +91,19 @@ public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
 
     @Override
     public Optional<Profile> fetchProfileByUserName(String userName) {
-        return profileRepository.findOneByUserNameIgnoreCase(userName);
+        Optional<Profile> optionalProfile = profileRepository.findOneByUserNameIgnoreCase(userName);
+        if(optionalProfile.isPresent()){
+            return optionalProfile;
+        }
+        else{
+            throw new EntityNotFoundException("Profile not found for UserName");
+        }
     }
 
     @Override
     public Optional<Profile> fetchProfileByEmail(String emails) {
         Optional<Profile> optionalProfile = profileRepository.findByEmailsIgnoreCase(emails);
+      
         if(optionalProfile.isPresent()){
             return optionalProfile;
         }
@@ -107,14 +114,21 @@ public class ProfileServiceEmpL implements ProfileService, UserDetailsService {
 
     @Override
     public Optional<Profile> fetchProfileByToken(String token) {
-        return profileRepository.findByPasswordResetToken(token);
+        Optional<Profile> optionalProfile = profileRepository.findByPasswordResetToken(token);
+
+        if(optionalProfile.isPresent()){
+            return optionalProfile;
+        }
+        else{
+            throw new EntityNotFoundException("Token does not exist or is expired");
+        }
     }
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         Optional<Profile> optionalProfile = profileRepository.findOneByUserNameIgnoreCase(userName);
         if(optionalProfile.isEmpty()){
-            throw new UsernameNotFoundException("Profile with username "+userName+" is not found");
+            throw new UsernameNotFoundException("Profile with that username is not found");
         }
         Profile profile = optionalProfile.get();
 
