@@ -13,17 +13,19 @@
                 </a>
             </div>
             <div class="search-bar" sec:authorize="isAuthenticated()">
-                <select class="category" name="category" id="item-category">
-                    <option>Category</option>
-                    <option value="CELLPHONE">CELLPHONE</option>
-                    <option value="ACCESSORIES">ACCESSORIES</option>
-                    <option value="COMPUTERS">COMPUTERS</option>
-                    <option value="VIDEO_GAMES">VIDEO_GAMES</option>
-                    <option value="MUSICAL_INSTRUMENTS">MUSICAL_INSTRUMENTS</option>
-                    <option value="BOOKS">BOOKS</option>
-                </select>
-                <input class="search" type="text" id="search-cat" name="search-category" placeholder="What are you looking for?">
-                <button class="search_btn"><i class="fa-solid fa-search"></i> </button>
+                <form th:action="@{/filteredItems}" method="post">
+                    <select class="category" name="category" id="item-category">
+                        <option>Category</option>
+                        <option th:value="CELLPHONE">CELLPHONE</option>
+                        <option th:value="ACCESSORIES">ACCESSORIES</option>
+                        <option th:value="COMPUTERS">COMPUTERS</option>
+                        <option th:value="VIDEO_GAMES">VIDEO_GAMES</option>
+                        <option th:value="MUSICAL_INSTRUMENTS">MUSICAL_INSTRUMENTS</option>
+                        <option th:value="BOOKS">BOOKS</option>
+                    </select>
+                    <input class="search" type="text" id="search-cat" name="search-category" placeholder="What are you looking for?">
+                    <button class="search_btn" type="submit"><i class="fa-solid fa-search"></i> </button>
+                </form>
             </div>
             <div class="btns" sec:authorize="isAuthenticated()">
                 <button class="btn"><i class="fa-solid fa-bookmark"></i></button>
