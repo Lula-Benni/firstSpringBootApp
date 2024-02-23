@@ -1,6 +1,7 @@
 package com.lulamile.firstSpringBootApp.controller;
 
 import com.lulamile.firstSpringBootApp.service.*;
+import com.lulamile.firstSpringBootApp.utils.Category;
 import com.lulamile.firstSpringBootApp.utils.email.EmailDetails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -103,6 +104,13 @@ public class ViewController {
         List<Item> items = itemService.fetchItems();
         ModelAndView mav = new ModelAndView("home");
         mav.addObject("items",items);
+        return mav;
+    }
+    @PostMapping("/filteredItems")
+    private ModelAndView filteredItems(@ModelAttribute("category") Category category, Model model){
+        List<Item> filteredItems = itemService.fetchItemsByCategory(category);
+        ModelAndView mav = new ModelAndView("home");
+        mav.addObject("items",filteredItems);
         return mav;
     }
     @GetMapping("/logout")
