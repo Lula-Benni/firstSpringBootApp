@@ -14,7 +14,6 @@
                 <p class="card-text" th:text="${item.itemPrice}">Some example text.</p>
                 <p class="card-text" th:text="${item.category}">Some example text.</p>
                 <p class="card-text" th:text="${item.itemDescription}">Some example text.</p>
-                <!--<p class="card-text" th:text="${item.profile}">Profile Name</p>-->
                 <ul class="nav justify-content-center nav-justified">
                     <li class="nav-item">
                     <a class="fa-solid fa-bookmark" href="#" style="text-decoration: none;"></a>
@@ -23,11 +22,47 @@
                         <a class="fa-solid fa-comment" href="#" style="text-decoration: none;" ></a>
                     </li>
                     <li class="nav-item">
-                        <a class="fa-solid fa-user" th:href="@{/item-profile-{id}(id=${item.profile.profileId})}" style="text-decoration: none;"></a>
+                        <a class="fa-solid fa-user" href="" data-bs-toggle="modal" th:data-bs-target="'#profileModal' + ${item.profile.profileId}" style="text-decoration: none;"></a>
                     </li>
-                    <!--<a th:href="@{/itemProfile-{id}(id=${item.profile.profileId})}" class="btn btn-primary">See Profile</a>-->
                 </ul>
+                    <!-- The Modal -->
+                    <div class="modal" th:id="'profileModal' + ${item.profile.profileId}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Seller Information</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <h5>Name & surname</h5>
+                                    <h6 th:text="${item.profile.fullName}">John Doe</h6>
+                                    <hr>
+                                    <h5>Username</h5>
+                                    <h6 th:text="${item.profile.userName}">John Doe</h6>
+                                    <hr>
+                                    <h4>Contacts</h4>
+                                    <h5>Email</h5>
+                                    <h6 th:text="${item.profile.contact.emails}">John Doe</h6>
+                                    <h5>Phone number</h5>
+                                    <h6 th:text="${item.profile.contact.cellNumber}">John Doe</h6>
+                                    <hr>
+                                    <h4>Address</h4>
+                                    <h6 th:text="${item.profile.address.street}">John Doe</h6>
+                                    <h6 th:text="${item.profile.address.city}">John Doe</h6>
+                                    <h6 th:text="${item.profile.address.postalCode}">John Doe</h6>
+                                    <h6 th:text="${item.profile.address.state}">John Doe</h6>
+                                    <h6 th:text="${item.profile.address.country}">John Doe</h6>
+                                    <h6 th:text="${item.profile.address.additionalDetails}">John Doe</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
+            <!--</form>-->
         </div>
     </div>
 <footer th:replace="~{fragments/footer.html :: footer}"></footer>
