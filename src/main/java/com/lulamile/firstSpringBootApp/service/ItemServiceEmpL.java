@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Predicate;
 @Service
 public class ItemServiceEmpL implements ItemService {
@@ -63,5 +64,13 @@ public class ItemServiceEmpL implements ItemService {
             throw new EntityNotFoundException("No item found for that category");
         }
         return items;
+    }
+    @Override
+    public Optional<Item> fetchItemByName(String name) {
+        Optional<Item> item = itemRepository.findItemByItemName(name);
+        if(item.isEmpty()){
+            throw new EntityNotFoundException("No item found");
+        }
+        return item;
     }
 }

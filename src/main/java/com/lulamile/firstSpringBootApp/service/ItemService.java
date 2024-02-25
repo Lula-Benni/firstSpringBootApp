@@ -5,6 +5,7 @@ import com.lulamile.firstSpringBootApp.entity.Profile;
 import com.lulamile.firstSpringBootApp.utils.Category;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ItemService {
     public Item saveItem(Item item);
@@ -17,4 +18,5 @@ public interface ItemService {
 
     Item updateItem(int itemId, Item item);
     List<Item> fetchItemsByCategory(Category category);
+    Optional<Item> fetchItemByName(String name);
 }
