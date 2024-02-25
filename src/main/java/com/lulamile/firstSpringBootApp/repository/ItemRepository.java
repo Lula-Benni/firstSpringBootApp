@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item,Integer> {
     public List<Item> findItemsByCategory(Category category);
+    public Optional<Item> findItemByItemName(String itemName);
 }
 
