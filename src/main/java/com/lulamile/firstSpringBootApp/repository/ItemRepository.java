@@ -13,6 +13,6 @@ import java.util.Optional;
 @Repository
 public interface ItemRepository extends JpaRepository<Item,Integer> {
     public List<Item> findItemsByCategory(Category category);
-    public Optional<Item> findItemByItemName(String itemName);
+    public List<Item> findItemsByItemNameIgnoreCaseContaining(String itemName);
 }
 

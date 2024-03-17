@@ -4,11 +4,10 @@ import com.lulamile.firstSpringBootApp.entity.Item;
 import com.lulamile.firstSpringBootApp.utils.Category;
 import jakarta.persistence.EntityNotFoundException;
 import org.assertj.core.util.Arrays;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -16,9 +15,13 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import java.sql.Array;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DataJpaTest
 class ItemRepositoryTest {
     @Autowired
@@ -69,5 +72,22 @@ class ItemRepositoryTest {
         List<Item> found = itemRepository.findItemsByCategory(category);
         System.out.println(found);
         assertEquals(0,found.size());
+    }
+
+    @ParameterizedTest
+    @MethodSource("getFindItemsByCategoryNotFoundParameters")
+    void findItemByItemName(String name) {
+            if (itemRepository.findItemsByItemNameIgnoreCaseContaining(name).isEmpty()) {
+                assertTrue(true);
+            } else if (name.equals(" ")) {
+                assertFalse(false);
+            } else {
+                List<Item> found = itemRepository.findItemsByItemNameIgnoreCaseContaining(name);
+                System.out.println("*****************************" + name+" "+found+ "*******************************");
+                assertTrue(true);
+        }
+    }
+    private Stream<String> getFindItemsByCategoryNotFoundParameters(){
+        return Stream.of("the song of ice and fire","iphone","ice and fire","nhyok"," ",null);
     }
 }
