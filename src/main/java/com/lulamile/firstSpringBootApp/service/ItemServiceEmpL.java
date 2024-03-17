@@ -66,9 +66,12 @@ public class ItemServiceEmpL implements ItemService {
         return items;
     }
     @Override
-    public Optional<Item> fetchItemByName(String name) {
-        Optional<Item> item = itemRepository.findItemByItemName(name);
+    public List<Item> fetchItemByItemNameIgnoreCase(String name) {
+        List<Item> item = itemRepository.findItemsByItemNameIgnoreCaseContaining(name);
         if(item.isEmpty()){
+            throw new EntityNotFoundException("No item found");
+        }
+        if(name.equals(" ")){
             throw new EntityNotFoundException("No item found");
         }
         return item;
