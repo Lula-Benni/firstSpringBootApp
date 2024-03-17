@@ -57,7 +57,7 @@ class ItemServiceTest {
             assertThrows(EntityNotFoundException.class, () -> itemService.fetchItemByItemNameIgnoreCase(name),"No item found");
         } else {
             List<Item> found = itemService.fetchItemByItemNameIgnoreCase(name);
-            assertTrue(found.size() >= 1);
+            assertFalse(found.isEmpty());
         }
     }
     private List<Item> getSearchedItems(String name) {
