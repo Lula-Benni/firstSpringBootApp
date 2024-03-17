@@ -18,5 +18,5 @@ public interface ItemService {
 
     Item updateItem(int itemId, Item item);
     List<Item> fetchItemsByCategory(Category category);
-    Optional<Item> fetchItemByName(String name);
+    List<Item> fetchItemByItemNameIgnoreCase(String name);
 }
